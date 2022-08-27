@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_app/core/models/event_model.dart';
+import 'package:event_app/core/routes/route_constants.dart';
 import 'package:event_app/core/services/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -57,6 +59,27 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          context.emptySizedHeightBoxLow3x,
+          Padding(
+            padding: context.horizontalPaddingNormal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Popular",
+                  style: context.textTheme.headline5?.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "See All",
+                  style: context.textTheme.subtitle1?.copyWith(
+                    color: Colors.pinkAccent,
+                  ),
+                ),
+              ],
+            ),
           ),
           context.emptySizedHeightBoxLow3x,
           StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -127,13 +150,22 @@ class HomePage extends StatelessWidget {
                                   ],
                                 ),
                                 context.emptySizedWidthBoxHigh,
-                                CircleAvatar(
-                                  backgroundColor:
-                                      Colors.grey.shade900.withOpacity(0.6),
-                                  radius: 30,
-                                  child: const Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      Routes.eventDetail,
+                                      arguments: Event.fromJson(doc.data()),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor:
+                                        Colors.grey.shade900.withOpacity(0.6),
+                                    radius: 30,
+                                    child: const Icon(
+                                      Icons.arrow_forward,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ],

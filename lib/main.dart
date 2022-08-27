@@ -1,7 +1,8 @@
-import 'package:event_app/feature/home/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'core/routes/route_constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: const HomePage(),
+      initialRoute: Routes.home,
+      routes: Routes.routes,
     );
   }
 }
