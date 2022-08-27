@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.event_app">
+    package="com.example.eventApp">
    <application
         android:label="event_app"
         android:name="${applicationName}"
