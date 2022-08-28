@@ -20,8 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.white),
-      ),
+          colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.white)),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: Routes.home,
