@@ -8,6 +8,7 @@ abstract class ICacheManager<T> {
   void saveUser(String user);
   void saveAll(List<T> entities, String boxName);
   void getAll(String boxName);
+  bool isExist(int id, String boxName);
   String? getUser();
 }
 
@@ -57,5 +58,10 @@ class CacheManager<T> implements ICacheManager<T> {
   @override
   String? getUser() {
     return Hive.box('user').getAt(0);
+  }
+
+  @override
+  bool isExist(int id, String boxName) {
+    return Hive.box(boxName).containsKey(id);
   }
 }
