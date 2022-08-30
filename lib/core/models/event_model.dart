@@ -1,12 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+part 'event_model.g.dart';
 
+@HiveType(typeId: 0)
 class Event {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String title;
+  @HiveField(2)
   final String detail;
+  @HiveField(3)
   final List peoples;
+  @HiveField(4)
   final double price;
-  final Timestamp date;
+  @HiveField(5)
+  final DateTime date;
 
   Event(
       {required this.date,
@@ -23,7 +32,7 @@ class Event {
       price: json["price"].toDouble(),
       detail: json['location'],
       peoples: List.from(json['peoples']),
-      date: json['date'],
+      date: json['date'].toDate(),
     );
   }
 }

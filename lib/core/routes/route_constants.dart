@@ -8,7 +8,7 @@ class Routes {
   static const String home = '/home';
   static const String eventDetail = "/eventDetail";
   static final routes = <String, WidgetBuilder>{
-    home: (BuildContext context) => const HomePage(),
+    home: (BuildContext context) => HomePage(),
     eventDetail: (BuildContext context) => const EventDetails(),
   };
 }

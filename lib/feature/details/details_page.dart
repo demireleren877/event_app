@@ -1,6 +1,8 @@
+import 'package:event_app/core/cache/cache_manager.dart';
 import 'package:event_app/core/models/event_model.dart';
 import 'package:event_app/core/utilities/scroll_behavior.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
 
@@ -10,6 +12,7 @@ class EventDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)?.settings.arguments as Event;
+    CacheManager _cacheManager = CacheManager<Event>();
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -88,12 +91,11 @@ class EventDetails extends StatelessWidget {
                             ),
                             context.emptySizedWidthBoxLow3x,
                             Text(
-                              arguments.date.toDate().day.toString() +
+                              arguments.date.day.toString() +
                                   " " +
-                                  DateFormat("MMMM")
-                                      .format(arguments.date.toDate()) +
+                                  DateFormat("MMMM").format(arguments.date) +
                                   " " +
-                                  arguments.date.toDate().year.toString(),
+                                  arguments.date.year.toString(),
                               style: context.textTheme.bodyText1?.copyWith(
                                 color: Colors.white54,
                                 fontSize: context.height * 0.021,
@@ -107,8 +109,7 @@ class EventDetails extends StatelessWidget {
                             ),
                             context.emptySizedWidthBoxLow3x,
                             Text(
-                              DateFormat("hh:mm a")
-                                  .format(arguments.date.toDate()),
+                              DateFormat("hh:mm a").format(arguments.date),
                               style: context.textTheme.bodyText1?.copyWith(
                                 color: Colors.white54,
                                 fontSize: context.height * 0.021,
@@ -188,7 +189,8 @@ class EventDetails extends StatelessWidget {
                                 size: 30,
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
+                                _cacheManager.saveHive(arguments, arguments.id,
+                                    Hive.box("events"));
                               },
                             ),
                           ),
