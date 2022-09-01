@@ -40,18 +40,18 @@ class HomePage extends StatelessWidget {
               label: "Home",
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.date_range),
-              icon: Icon(Icons.date_range_outlined),
-              label: "Favs",
-            ),
-            BottomNavigationBarItem(
               activeIcon: Icon(Icons.location_on_rounded),
               icon: Icon(Icons.location_on_outlined),
               label: "Search",
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.local_activity),
+              activeIcon: Icon(Icons.local_activity_rounded),
               icon: Icon(Icons.local_activity_outlined),
+              label: "Favs",
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(Icons.person_rounded),
+              icon: Icon(Icons.person_outline_rounded),
               label: "Profile",
             ),
           ],

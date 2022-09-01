@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        initialRoute: Routes.home,
+        initialRoute: Routes.myTickets,
         routes: Routes.routes,
       ),
     );

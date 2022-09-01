@@ -15,6 +15,8 @@ class Event {
   final double price;
   @HiveField(5)
   final DateTime date;
+  @HiveField(6)
+  String? image;
 
   Event(
       {required this.date,
@@ -22,7 +24,8 @@ class Event {
       required this.price,
       required this.title,
       required this.detail,
-      required this.peoples});
+      required this.peoples,
+      this.image});
 
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
@@ -32,6 +35,7 @@ class Event {
       detail: json['location'],
       peoples: List.from(json['peoples']),
       date: json['date'].toDate(),
+      image: json['image'].toString(),
     );
   }
 }

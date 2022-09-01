@@ -20,13 +20,17 @@ class TicketPage extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
+                borderRadius: context.normalBorderRadius,
                 color: Colors.grey[900],
               ),
               height: context.height / 1.2,
             ),
             Positioned(
-              bottom: context.height / 2.2,
-              child: const TicketHeader(),
+              top: 0,
+              child: ClipRRect(
+                borderRadius: context.normalBorderRadius,
+                child: const TicketHeader(),
+              ),
             ),
             Positioned(
               bottom: context.height / 2.28,
