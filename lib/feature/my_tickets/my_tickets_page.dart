@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_app/core/routes/route_constants.dart';
 import 'package:event_app/core/services/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -117,28 +118,36 @@ class MyTicketList extends StatelessWidget {
                 ],
               ),
               rightChild: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ChatScreen(
-                        currentUser: "Eren Demirel",
-                        currentLecture:
-                            data["takenTickets"][index]["title"].toString(),
+                  onTap: () {},
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ChatScreen(
+                                currentUser: "Eren Demirel",
+                                currentLecture: data["takenTickets"][index]
+                                        ["title"]
+                                    .toString(),
+                              ),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.chat_outlined),
+                        iconSize: context.height * 0.045,
                       ),
-                    ),
-                  );
-                },
-                child: Center(
-                  child: RotatedBox(
-                    quarterTurns: 3,
-                    child: Text(
-                      "53879566",
-                      style: context.textTheme.headline6,
-                    ),
-                  ),
-                ),
-              ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.ticket);
+                        },
+                        icon: const Icon(Icons.qr_code_rounded),
+                        iconSize: context.height * 0.045,
+                      )
+                    ],
+                  )),
               colorBackground: Colors.grey.shade900,
             ),
             context.emptySizedHeightBoxLow3x

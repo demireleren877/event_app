@@ -49,6 +49,7 @@ dependencies:
   fluttertoast: ^8.0.8
   lottie: ^1.2.1
   image_picker: ^0.8.4+4
+  firebase_auth: ^3.3.5
 
   
 

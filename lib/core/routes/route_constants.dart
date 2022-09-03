@@ -4,6 +4,9 @@ import 'package:event_app/feature/my_tickets/my_tickets_page.dart';
 import 'package:event_app/feature/ticket/ticket_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../feature/login/login_screen.dart';
+import '../../feature/sign_up/sign_up_screen.dart';
+
 class Routes {
   Routes._();
   static const String init = '/init';
@@ -11,10 +14,14 @@ class Routes {
   static const String home = '/home';
   static const String myTickets = '/myTickets';
   static const String eventDetail = "/eventDetail";
+  static const String signUp = "/signUp";
+  static const String login = "/login";
   static final routes = <String, WidgetBuilder>{
     home: (BuildContext context) => HomePage(),
     ticket: (BuildContext context) => const TicketPage(),
-    myTickets: (BuildContext context) => MyTickets(),
+    signUp: (BuildContext context) => SignUpPage(),
+    myTickets: (BuildContext context) => const MyTickets(),
+    login: (BuildContext context) => LoginScreen(),
     eventDetail: (BuildContext context) => const EventDetails(),
   };
 }
