@@ -72,18 +72,35 @@ mixin _$SignUpVM on _SignUpVMBase, Store {
     });
   }
 
-  late final _$imageAtom = Atom(name: '_SignUpVMBase.image', context: context);
+  late final _$imageUrlAtom =
+      Atom(name: '_SignUpVMBase.imageUrl', context: context);
 
   @override
-  String get image {
-    _$imageAtom.reportRead();
-    return super.image;
+  String get imageUrl {
+    _$imageUrlAtom.reportRead();
+    return super.imageUrl;
   }
 
   @override
-  set image(String value) {
-    _$imageAtom.reportWrite(value, super.image, () {
-      super.image = value;
+  set imageUrl(String value) {
+    _$imageUrlAtom.reportWrite(value, super.imageUrl, () {
+      super.imageUrl = value;
+    });
+  }
+
+  late final _$imageFileAtom =
+      Atom(name: '_SignUpVMBase.imageFile', context: context);
+
+  @override
+  File? get imageFile {
+    _$imageFileAtom.reportRead();
+    return super.imageFile;
+  }
+
+  @override
+  set imageFile(File? value) {
+    _$imageFileAtom.reportWrite(value, super.imageFile, () {
+      super.imageFile = value;
     });
   }
 
@@ -91,10 +108,24 @@ mixin _$SignUpVM on _SignUpVMBase, Store {
       AsyncAction('_SignUpVMBase.createAccount', context: context);
 
   @override
-  Future<dynamic> createAccount(dynamic name, dynamic email, dynamic password,
-      dynamic context, dynamic imageUrl) {
-    return _$createAccountAsyncAction.run(
-        () => super.createAccount(name, email, password, context, imageUrl));
+  Future<dynamic> createAccount(dynamic context) {
+    return _$createAccountAsyncAction.run(() => super.createAccount(context));
+  }
+
+  late final _$setProfileImageAsyncAction =
+      AsyncAction('_SignUpVMBase.setProfileImage', context: context);
+
+  @override
+  Future setProfileImage() {
+    return _$setProfileImageAsyncAction.run(() => super.setProfileImage());
+  }
+
+  late final _$uploadImageAsyncAction =
+      AsyncAction('_SignUpVMBase.uploadImage', context: context);
+
+  @override
+  Future uploadImage() {
+    return _$uploadImageAsyncAction.run(() => super.uploadImage());
   }
 
   late final _$_SignUpVMBaseActionController =
@@ -145,13 +176,25 @@ mixin _$SignUpVM on _SignUpVMBase, Store {
   }
 
   @override
+  void addUsertoHive() {
+    final _$actionInfo = _$_SignUpVMBaseActionController.startAction(
+        name: '_SignUpVMBase.addUsertoHive');
+    try {
+      return super.addUsertoHive();
+    } finally {
+      _$_SignUpVMBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 pageController: ${pageController},
 userName: ${userName},
 email: ${email},
 password: ${password},
-image: ${image}
+imageUrl: ${imageUrl},
+imageFile: ${imageFile}
     ''';
   }
 }

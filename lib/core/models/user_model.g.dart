@@ -1,50 +1,41 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'event_model.dart';
+part of 'user_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class EventAdapter extends TypeAdapter<Event> {
+class UserAdapter extends TypeAdapter<User> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  Event read(BinaryReader reader) {
+  User read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Event(
-      date: fields[5] as DateTime,
-      id: fields[0] as int,
-      price: fields[4] as double,
-      title: fields[1] as String,
-      location: fields[2] as String,
-      peoples: (fields[3] as List).cast<dynamic>(),
-      image: fields[6] as String?,
+    return User(
+      name: fields[0] as String,
+      email: fields[1] as String,
+      profileImageUrl: fields[2] as String,
+      takenTickets: (fields[3] as List).cast<dynamic>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, Event obj) {
+  void write(BinaryWriter writer, User obj) {
     writer
-      ..writeByte(7)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.title)
-      ..writeByte(2)
-      ..write(obj.location)
-      ..writeByte(3)
-      ..write(obj.peoples)
       ..writeByte(4)
-      ..write(obj.price)
-      ..writeByte(5)
-      ..write(obj.date)
-      ..writeByte(6)
-      ..write(obj.image);
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.email)
+      ..writeByte(2)
+      ..write(obj.profileImageUrl)
+      ..writeByte(3)
+      ..write(obj.takenTickets);
   }
 
   @override
@@ -53,7 +44,7 @@ class EventAdapter extends TypeAdapter<Event> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is EventAdapter &&
+      other is UserAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

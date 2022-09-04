@@ -8,7 +8,7 @@ class Event {
   @HiveField(1)
   final String title;
   @HiveField(2)
-  final String detail;
+  final String location;
   @HiveField(3)
   final List peoples;
   @HiveField(4)
@@ -23,7 +23,7 @@ class Event {
       required this.id,
       required this.price,
       required this.title,
-      required this.detail,
+      required this.location,
       required this.peoples,
       this.image});
 
@@ -32,7 +32,7 @@ class Event {
       id: json['id'],
       title: json['title'],
       price: json["price"].toDouble(),
-      detail: json['location'],
+      location: json['location'],
       peoples: List.from(json['peoples']),
       date: json['date'].toDate(),
       image: json['image'].toString(),

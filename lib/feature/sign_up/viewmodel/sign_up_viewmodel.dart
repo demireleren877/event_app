@@ -1,16 +1,23 @@
+import 'dart:io';
+
+import 'package:event_app/core/cache/cache_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../core/colors/app_colors.dart';
-import '../../../core/routes/route_constants.dart';
 import '../../../core/services/firebase_services.dart';
 part 'sign_up_viewmodel.g.dart';
 
 class SignUpVM = _SignUpVMBase with _$SignUpVM;
 
 abstract class _SignUpVMBase with Store {
+  final CacheManager _cacheManager = CacheManager();
+
   @observable
   PageController pageController = PageController();
 
@@ -24,7 +31,10 @@ abstract class _SignUpVMBase with Store {
   String password = "";
 
   @observable
-  String image = "";
+  String imageUrl = "";
+
+  @observable
+  File? imageFile;
 
   @action
   void changeUserName(String value) => userName = value;
@@ -42,13 +52,10 @@ abstract class _SignUpVMBase with Store {
   }
 
   @action
-  Future createAccount(name, email, password, context, imageUrl) async {
+  Future createAccount(context) async {
     try {
       await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        Navigator.pushNamed(context, Routes.home);
-      });
+          .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (error) {
       Fluttertoast.showToast(
           msg: error.message ?? "Hatalı Giriş Denemesi",
@@ -56,10 +63,39 @@ abstract class _SignUpVMBase with Store {
           textColor: AppColors.red);
     }
     await FirebaseServices.user.doc(email).set({
-      "name": name,
+      "name": userName,
       "profileImageUrl": imageUrl,
       "email": email,
       "status": "unavailable",
     });
+    addUsertoHive();
+  }
+
+  @action
+  setProfileImage() async {
+    ImagePicker _picker = ImagePicker();
+    await _picker.pickImage(source: ImageSource.camera).then((xFile) => {
+          if (xFile != null)
+            {
+              imageFile = File(xFile.path),
+              uploadImage(),
+            }
+        });
+  }
+
+  @action
+  uploadImage() async {
+    String fileName = const Uuid().v1();
+    var ref = FirebaseStorage.instance
+        .ref()
+        .child("profileImages")
+        .child("$fileName.jpg");
+    var uploadTask = await ref.putFile(imageFile!).catchError((error) async {});
+    imageUrl = await uploadTask.ref.getDownloadURL();
+  }
+
+  @action
+  void addUsertoHive() {
+    _cacheManager.saveUser(userName);
   }
 }

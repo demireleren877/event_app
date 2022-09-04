@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseServices {
   final firestore = FirebaseFirestore.instance;
+  static final auth = FirebaseAuth.instance;
   static final user = FirebaseFirestore.instance.collection("users");
   static final events =
       FirebaseFirestore.instance.collection("events").orderBy("id").snapshots();
-  static final users = FirebaseFirestore.instance
-      .collection("users")
-      .doc("demireleren877@gmail.com")
-      .snapshots();
   static final forums = FirebaseFirestore.instance.collection("forums");
   forumSnapshots(currentLecture) {
     return forums
@@ -16,5 +14,9 @@ class FirebaseServices {
         .collection("chats")
         .orderBy("time", descending: true)
         .snapshots();
+  }
+
+  getEvents() {
+    return firestore.collection("events").orderBy("id").snapshots();
   }
 }

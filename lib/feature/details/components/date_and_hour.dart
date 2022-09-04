@@ -23,11 +23,7 @@ class DatenHour extends StatelessWidget {
         ),
         context.emptySizedWidthBoxLow3x,
         Text(
-          arguments.date.day.toString() +
-              " " +
-              DateFormat("MMMM").format(arguments.date) +
-              " " +
-              arguments.date.year.toString(),
+          DateFormat("dd MMMM yyyy").format(arguments.date),
           style: context.textTheme.bodyText1?.copyWith(
             color: Colors.white54,
             fontSize: context.height * 0.021,

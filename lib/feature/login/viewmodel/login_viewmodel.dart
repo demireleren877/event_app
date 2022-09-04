@@ -1,3 +1,4 @@
+import 'package:event_app/core/routes/route_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -39,7 +40,8 @@ abstract class _LoginVMBase with Store {
       try {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
-        Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, Routes.home, (route) => false);
       } on FirebaseAuthException catch (error) {
         Fluttertoast.showToast(
           msg: error.message ?? "Hatalı Giriş Denemesi",

@@ -1,4 +1,5 @@
 import 'package:event_app/core/models/event_model.dart';
+import 'package:event_app/core/services/firebase_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(EventAdapter());
   await Hive.openBox('events');
-  await Hive.openBox('users');
+  await Hive.openBox('user');
   runApp(const MyApp());
 }
 
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        initialRoute: Routes.login,
+        initialRoute: FirebaseServices.auth.currentUser != null
+            ? Routes.home
+            : Routes.login,
         routes: Routes.routes,
       ),
     );

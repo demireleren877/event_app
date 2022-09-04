@@ -22,7 +22,7 @@ class Location extends StatelessWidget {
         ),
         context.emptySizedWidthBoxLow3x,
         Text(
-          arguments.detail,
+          arguments.location,
           style: context.textTheme.bodyText1?.copyWith(
             color: Colors.white54,
             fontSize: context.height * 0.021,

@@ -7,7 +7,6 @@ abstract class ICacheManager<T> {
   void deleteAllHives(Box box);
   void saveUser(String user);
   void saveAll(List<T> entities, String boxName);
-  void getAll(String boxName);
   bool isExist(int id, String boxName);
   String? getUser();
 }
@@ -48,16 +47,8 @@ class CacheManager<T> implements ICacheManager<T> {
   }
 
   @override
-  void getAll(String boxName) {
-    final box = Hive.box(boxName);
-    for (var entity in box.values) {
-      print(entity);
-    }
-  }
-
-  @override
   String? getUser() {
-    return Hive.box('user').getAt(0);
+    return Hive.box('user').get("user");
   }
 
   @override

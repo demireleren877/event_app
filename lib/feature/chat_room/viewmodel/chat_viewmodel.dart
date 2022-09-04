@@ -4,6 +4,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../../core/services/firebase_services.dart';
 part 'chat_viewmodel.g.dart';
 
 class ChatVM = _ChatVMBase with _$ChatVM;
@@ -18,8 +20,8 @@ abstract class _ChatVMBase with Store {
     if (messageController.text.isNotEmpty) {
       Map<String, dynamic> messageMap = {
         "message": messageController.text,
-        "senderID": "demireleren877@gmail.com",
-        "senderId": "Eren Demirel",
+        "senderID": FirebaseServices.auth.currentUser!.email,
+        "senderId": currentUser,
         "type": "text",
         "time": DateTime.now().millisecondsSinceEpoch.toString(),
       };
@@ -37,7 +39,7 @@ abstract class _ChatVMBase with Store {
   @action
   bool isByMe(snapshot, index) {
     if (snapshot.data.docs[index].data()["senderID"] ==
-        "demireleren877@gmail.com") {
+        FirebaseServices.auth.currentUser!.email) {
       return true;
     } else {
       return false;
@@ -71,8 +73,8 @@ abstract class _ChatVMBase with Store {
         .doc(fileName)
         .set({
       "message": imageUrl,
-      "senderID": "demireleren877@gmail.com",
-      "senderId": "Eren Demirel",
+      "senderID": FirebaseServices.auth.currentUser!.email,
+      "senderId": currentUser,
       "type": "img",
       "time": DateTime.now().millisecondsSinceEpoch.toString(),
     });

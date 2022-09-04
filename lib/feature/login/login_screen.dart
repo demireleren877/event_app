@@ -1,8 +1,8 @@
-import 'package:event_app/core/routes/route_constants.dart';
 import 'package:event_app/core/utilities/scroll_behavior.dart';
 import 'package:flutter/material.dart';
 import '../login/viewmodel/login_viewmodel.dart';
 import '../login/components/login_button.dart';
+import 'components/create_account.dart';
 import 'components/email_field.dart';
 import 'package:kartal/kartal.dart';
 import 'components/password_field.dart';
@@ -61,21 +61,7 @@ class LoginScreen extends StatelessWidget {
                     context.emptySizedHeightBoxLow3x,
                     LoginButton(loginVM: _loginVM, formKey: _formKey),
                     context.emptySizedHeightBoxLow,
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, Routes.signUp);
-                        },
-                        child: Text(
-                          "Yeni Hesap Oluştur",
-                          style: context.textTheme.bodyText1?.copyWith(
-                            fontSize: context.dynamicWidth(0.04),
-                            decoration: TextDecoration.underline,
-                            decorationThickness: 1.5,
-                          ),
-                        ),
-                      ),
-                    ),
+                    const CreateAccount(),
                   ],
                 ),
               ),
