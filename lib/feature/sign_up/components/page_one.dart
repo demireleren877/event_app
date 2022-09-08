@@ -41,6 +41,8 @@ class PageOne extends StatelessWidget {
           ),
           context.emptySizedHeightBoxNormal,
           SignUpButton(
+            buttonColor: const Color(0xFFACA0DF),
+            textColor: Colors.black,
             text: "Devam Et",
             onPressed: () {
               if (_signUpViewmodel.userName != "") {

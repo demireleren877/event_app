@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-
 import '../../../core/models/event_model.dart';
 
 class SellOutSection extends StatelessWidget {

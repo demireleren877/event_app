@@ -19,4 +19,12 @@ class FirebaseServices {
   getEvents() {
     return firestore.collection("events").orderBy("id").snapshots();
   }
+
+  getEventsforUser() {
+    return firestore
+        .collection("events")
+        .where("attendees", arrayContains: auth.currentUser!.email)
+        .where("date", isLessThan: DateTime.now())
+        .snapshots();
+  }
 }

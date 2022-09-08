@@ -37,6 +37,8 @@ class PageTwo extends StatelessWidget {
               hintText: "Şifre"),
           context.emptySizedHeightBoxNormal,
           SignUpButton(
+            textColor: Colors.black,
+            buttonColor: const Color(0xFFACA0DF),
             text: "Devam Et",
             onPressed: () {
               if (_signUpViewmodel.email != "" &&

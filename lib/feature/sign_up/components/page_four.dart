@@ -34,6 +34,8 @@ class PageFour extends StatelessWidget {
           Observer(
             builder: (_) {
               return SignUpButton(
+                buttonColor: const Color(0xFFACA0DF),
+                textColor: Colors.black,
                 text: _signUpViewmodel.imageFile == null
                     ? "Bir Fotoğraf Ekle"
                     : "Kaydını Tamamla",

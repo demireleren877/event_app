@@ -25,13 +25,10 @@ class AppBarProfileImage extends StatelessWidget {
           return const CenteredProgressIndicator();
         }
         return output["profileImageUrl"] == null
-            ? IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.person_rounded,
-                  size: 30.sp,
-                  color: Colors.white,
-                ),
+            ? Icon(
+                Icons.person_rounded,
+                size: 30.sp,
+                color: Colors.white,
               )
             : CircleAvatar(
                 radius: 20.r,

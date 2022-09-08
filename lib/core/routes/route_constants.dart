@@ -5,6 +5,7 @@ import 'package:event_app/feature/ticket/ticket_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../feature/login/login_screen.dart';
+import '../../feature/profile/profile_screen.dart';
 import '../../feature/sign_up/sign_up_screen.dart';
 
 class Routes {
@@ -16,7 +17,9 @@ class Routes {
   static const String eventDetail = "/eventDetail";
   static const String signUp = "/signUp";
   static const String login = "/login";
+  static const String profile = "/profile";
   static final routes = <String, WidgetBuilder>{
+    profile: (BuildContext context) => const ProfilePage(),
     home: (BuildContext context) => HomePage(),
     ticket: (BuildContext context) => const TicketPage(),
     signUp: (BuildContext context) => SignUpPage(),

@@ -29,6 +29,8 @@ class PageThree extends StatelessWidget {
           Image.asset("assets/welcome.png"),
           context.emptySizedHeightBoxLow3x,
           SignUpButton(
+            buttonColor: const Color(0xFFACA0DF),
+            textColor: Colors.black,
             text: "Devaam Et",
             onPressed: () {
               _signUpViewmodel.pageController.nextPage(

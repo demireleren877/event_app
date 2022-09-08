@@ -1,3 +1,4 @@
+import 'package:event_app/feature/home/components/profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,12 +64,8 @@ class BottomNavBar extends StatelessWidget {
             ),
             label: "",
           ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.menu,
-              color: Colors.pink.shade600,
-            ),
-            icon: const Icon(Icons.menu),
+          const BottomNavigationBarItem(
+            icon: AppBarProfileImage(),
             label: "",
           ),
         ],

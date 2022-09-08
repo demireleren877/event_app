@@ -6,10 +6,14 @@ class SignUpButton extends StatelessWidget {
     Key? key,
     this.onPressed,
     required this.text,
+    required this.textColor,
+    required this.buttonColor,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
   final String text;
+  final Color textColor;
+  final Color buttonColor;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +28,13 @@ class SignUpButton extends StatelessWidget {
             child: Text(
               text,
               style: context.textTheme.bodyLarge?.copyWith(
-                color: Colors.black,
+                color: textColor,
                 fontWeight: FontWeight.w900,
                 fontSize: context.dynamicWidth(0.04),
               ),
             ),
             style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(const Color(0xFFACA0DF)),
+              backgroundColor: MaterialStateProperty.all<Color>(buttonColor),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: context.lowBorderRadius,

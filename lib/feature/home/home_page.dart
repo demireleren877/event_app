@@ -1,14 +1,10 @@
+import 'package:kartal/kartal.dart';
 import 'package:event_app/feature/home/viewmodel/home_viewmodel.dart';
-import 'package:event_app/feature/my_tickets/my_tickets_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:kartal/kartal.dart';
-
-import '../calendar/calendar_page.dart';
-import '../main/main_page.dart';
 import 'components/bottom_navbar.dart';
-import 'components/profile_image.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -16,22 +12,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: buildAppBar(context),
-      bottomNavigationBar: BottomNavBar(homeVM: _homeVM),
-      body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _homeVM.pageController,
-        children: [
-          MainScreen(),
-          Container(),
-          CalendarScreen(),
-          const MyTickets(),
-          Container(),
-        ],
-      ),
-    );
+    return Observer(builder: (_) {
+      return Scaffold(
+        backgroundColor: Colors.black,
+        appBar:
+            _homeVM.selectedIndex == 4 ? profileAppBar() : buildAppBar(context),
+        bottomNavigationBar: BottomNavBar(homeVM: _homeVM),
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: _homeVM.pageController,
+          children: _homeVM.pages,
+        ),
+      );
+    });
   }
 
   AppBar buildAppBar(BuildContext context) {
@@ -63,9 +56,33 @@ class HomePage extends StatelessWidget {
               Icon(Icons.chat_bubble_rounded, color: Colors.white, size: 25.sp),
         ),
         context.emptySizedWidthBoxLow3x,
-        const AppBarProfileImage(),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.menu,
+            color: Colors.white,
+            size: 30.sp,
+          ),
+        ),
         context.emptySizedWidthBoxLow3x,
       ],
     );
   }
+
+  AppBar profileAppBar() => AppBar(
+        backgroundColor: Colors.black,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.more_horiz,
+              color: Colors.white,
+              size: 35.sp,
+            ),
+          ),
+          SizedBox(
+            width: 10.w,
+          ),
+        ],
+      );
 }
