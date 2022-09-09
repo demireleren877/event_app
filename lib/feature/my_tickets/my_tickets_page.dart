@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_app/core/services/firebase_services.dart';
+import 'package:event_app/core/utilities/scroll_behavior.dart';
+import 'package:event_app/feature/home/components/home_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
@@ -14,26 +16,32 @@ class MyTickets extends StatelessWidget {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
-        backgroundColor: Colors.black,
-        appBar: buildAppBar(context),
-        body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-            stream: FirebaseFirestore.instance
-                .collection("users")
-                .doc(FirebaseServices.auth.currentUser!.email)
-                .snapshots(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return TabBarView(
-                  children: [
-                    MyTicketList(snapshot: snapshot),
-                    MyTicketList(snapshot: snapshot),
-                  ],
+        appBar: buildHomeAppBar(context),
+        body: Scaffold(
+          backgroundColor: Colors.black,
+          appBar: buildAppBar(context),
+          body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+              stream: FirebaseFirestore.instance
+                  .collection("users")
+                  .doc(FirebaseServices.auth.currentUser!.email)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ScrollConfiguration(
+                    behavior: MyBehavior(),
+                    child: TabBarView(
+                      children: [
+                        MyTicketList(snapshot: snapshot),
+                        MyTicketList(snapshot: snapshot),
+                      ],
+                    ),
+                  );
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
-              }
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }),
+              }),
+        ),
       ),
     );
   }

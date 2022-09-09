@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../feature/login/login_screen.dart';
 import '../../feature/profile/profile_screen.dart';
+import '../../feature/search/search_screen.dart';
 import '../../feature/sign_up/sign_up_screen.dart';
 
 class Routes {
@@ -18,7 +19,9 @@ class Routes {
   static const String signUp = "/signUp";
   static const String login = "/login";
   static const String profile = "/profile";
+  static const String search = "/search";
   static final routes = <String, WidgetBuilder>{
+    search: (BuildContext context) => const SearchPage(),
     profile: (BuildContext context) => const ProfilePage(),
     home: (BuildContext context) => HomePage(),
     ticket: (BuildContext context) => const TicketPage(),

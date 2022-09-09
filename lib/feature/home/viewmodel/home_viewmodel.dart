@@ -1,4 +1,5 @@
 import 'package:event_app/feature/profile/profile_screen.dart';
+import 'package:event_app/feature/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -14,7 +15,7 @@ abstract class _HomeVMBase with Store {
 
   final List<Widget> pages = [
     MainScreen(),
-    Container(),
+    const SearchPage(),
     CalendarScreen(),
     const MyTickets(),
     const ProfilePage()

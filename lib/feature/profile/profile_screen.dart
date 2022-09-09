@@ -18,6 +18,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: profileAppBar(),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         padding: context.horizontalPaddingNormal,
@@ -141,6 +142,23 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
+
+  AppBar profileAppBar() => AppBar(
+        backgroundColor: Colors.black,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.more_horiz,
+              color: Colors.white,
+              size: 35.sp,
+            ),
+          ),
+          SizedBox(
+            width: 10.w,
+          ),
+        ],
+      );
 }
 
 class DateboxForProfile extends StatelessWidget {
