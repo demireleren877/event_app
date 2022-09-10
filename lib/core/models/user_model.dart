@@ -10,9 +10,15 @@ class User {
   @HiveField(2)
   final String profileImageUrl;
   @HiveField(3)
-  final List takenTickets;
+  final List<int> takenTickets;
+  @HiveField(4)
+  final String userName;
+  @HiveField(5)
+  final String status;
 
   User({
+    required this.status,
+    required this.userName,
     required this.name,
     required this.email,
     required this.profileImageUrl,
@@ -21,7 +27,9 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
+      status: json['status'],
       name: json['name'],
+      userName: json['userName'],
       email: json['email'],
       profileImageUrl: json["profileImageUrl"],
       takenTickets: List.from(json['takenTickets']),

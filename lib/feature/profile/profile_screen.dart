@@ -33,7 +33,7 @@ class ProfilePage extends StatelessWidget {
           ),
           context.emptySizedHeightBoxLow3x,
           Text(
-            "Son Etkinliklerim",
+            "Son Etkinlikler",
             style: context.textTheme.bodyText2?.copyWith(
               color: Colors.white,
               fontSize: 20.sp,
@@ -42,7 +42,8 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           context.emptySizedHeightBoxLow3x,
-          const LastEventStreamBuilder(),
+          LastEventStreamBuilder(
+              email: FirebaseServices.auth.currentUser!.email ?? ""),
           context.emptySizedHeightBoxNormal,
           Text(
             "Favoriler",
@@ -212,12 +213,14 @@ class DateboxForProfile extends StatelessWidget {
 class LastEventStreamBuilder extends StatelessWidget {
   const LastEventStreamBuilder({
     Key? key,
+    required this.email,
   }) : super(key: key);
+  final String email;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: FirebaseServices().getEventsforUser(),
+        stream: FirebaseServices().getEventsforUser(email),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Error = ${snapshot.error}');

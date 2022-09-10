@@ -17,7 +17,7 @@ class WelcomeText extends StatelessWidget {
     return Padding(
       padding: context.horizontalPaddingNormal,
       child: Text(
-        "Merhaba ${_cacheManager.getUser()} ",
+        "Merhaba PlaceHolder",
         style: context.textTheme.headline4,
       ),
     );

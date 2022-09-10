@@ -20,10 +20,10 @@ class FirebaseServices {
     return firestore.collection("events").orderBy("id").snapshots();
   }
 
-  getEventsforUser() {
+  getEventsforUser(String email) {
     return firestore
         .collection("events")
-        .where("attendees", arrayContains: auth.currentUser!.email)
+        .where("attendees", arrayContains: email)
         //.where("date", isLessThan: DateTime.now())
         .snapshots();
   }
