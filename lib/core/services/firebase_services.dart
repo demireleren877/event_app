@@ -27,4 +27,11 @@ class FirebaseServices {
         //.where("date", isLessThan: DateTime.now())
         .snapshots();
   }
+
+  getUsersForEvent(int id) {
+    return firestore
+        .collection("users")
+        .where("takenTickets", arrayContains: id)
+        .snapshots();
+  }
 }

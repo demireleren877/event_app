@@ -15,7 +15,7 @@ abstract class _HomeVMBase with Store {
 
   final List<Widget> pages = [
     MainScreen(),
-    const SearchPage(),
+    SearchPage(),
     CalendarScreen(),
     const MyTickets(),
     const ProfilePage()

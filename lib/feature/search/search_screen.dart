@@ -1,10 +1,11 @@
+import 'package:event_app/feature/search/viewmodel/search_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
-
+  SearchPage({Key? key}) : super(key: key);
+  final SearchVM _searchVM = SearchVM();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -21,7 +22,7 @@ class SearchPage extends StatelessWidget {
                 SizedBox(
                   width: context.width * 0.7,
                   child: TextField(
-                    onChanged: (value) {},
+                    onChanged: (value) => _searchVM.changeSearchValue(value),
                     decoration: InputDecoration(
                       suffixIcon: Icon(
                         Icons.search,

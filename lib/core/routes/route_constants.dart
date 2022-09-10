@@ -24,7 +24,7 @@ class Routes {
   static const String menu = "/menu";
   static final routes = <String, WidgetBuilder>{
     menu: (BuildContext context) => const MenuPage(),
-    search: (BuildContext context) => const SearchPage(),
+    search: (BuildContext context) => SearchPage(),
     profile: (BuildContext context) => const ProfilePage(),
     home: (BuildContext context) => HomePage(),
     ticket: (BuildContext context) => const TicketPage(),
