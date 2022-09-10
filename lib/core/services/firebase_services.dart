@@ -24,7 +24,7 @@ class FirebaseServices {
     return firestore
         .collection("events")
         .where("attendees", arrayContains: auth.currentUser!.email)
-        .where("date", isLessThan: DateTime.now())
+        //.where("date", isLessThan: DateTime.now())
         .snapshots();
   }
 }

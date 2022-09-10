@@ -11,18 +11,17 @@ class MyTicketList extends StatelessWidget {
     Key? key,
     required this.snapshot,
   }) : super(key: key);
-  final AsyncSnapshot snapshot;
+  final dynamic snapshot;
 
   @override
   Widget build(BuildContext context) {
-    final data = snapshot.data?.data();
-    return data["takenTickets"] == null
+    final docs = snapshot.data.docs;
+    return docs.length == 0
         ? const NoDataIcon()
         : ListView.builder(
             padding: context.paddingNormal,
             physics: const BouncingScrollPhysics(),
-            itemCount:
-                data["takenTickets"] == null ? 0 : data["takenTickets"].length,
+            itemCount: docs.length,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
@@ -31,11 +30,11 @@ class MyTicketList extends StatelessWidget {
                     shadowSize: .3,
                     height: context.height * 0.2,
                     leftChild: LeftChild(
-                      data: data,
+                      data: docs[index],
                       index: index,
                     ),
                     rightChild: RightChild(
-                      data: data,
+                      data: docs[index],
                       index: index,
                     ),
                     colorBackground: Colors.grey.shade900,

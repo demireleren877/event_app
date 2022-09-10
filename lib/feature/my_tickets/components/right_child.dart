@@ -22,9 +22,8 @@ class RightChild extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (_) => ChatScreen(
-                  currentUser: data["name"],
-                  currentLecture:
-                      data["takenTickets"][index]["title"].toString(),
+                  currentUser: "deneme",
+                  currentLecture: data["title"].toString(),
                 ),
               ),
             );

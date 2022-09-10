@@ -88,6 +88,21 @@ mixin _$SignUpVM on _SignUpVMBase, Store {
     });
   }
 
+  late final _$nameAtom = Atom(name: '_SignUpVMBase.name', context: context);
+
+  @override
+  String get name {
+    _$nameAtom.reportRead();
+    return super.name;
+  }
+
+  @override
+  set name(String value) {
+    _$nameAtom.reportWrite(value, super.name, () {
+      super.name = value;
+    });
+  }
+
   late final _$imageFileAtom =
       Atom(name: '_SignUpVMBase.imageFile', context: context);
 
@@ -165,6 +180,17 @@ mixin _$SignUpVM on _SignUpVMBase, Store {
   }
 
   @override
+  void changeName(String value) {
+    final _$actionInfo = _$_SignUpVMBaseActionController.startAction(
+        name: '_SignUpVMBase.changeName');
+    try {
+      return super.changeName(value);
+    } finally {
+      _$_SignUpVMBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void next() {
     final _$actionInfo =
         _$_SignUpVMBaseActionController.startAction(name: '_SignUpVMBase.next');
@@ -194,6 +220,7 @@ userName: ${userName},
 email: ${email},
 password: ${password},
 imageUrl: ${imageUrl},
+name: ${name},
 imageFile: ${imageFile}
     ''';
   }

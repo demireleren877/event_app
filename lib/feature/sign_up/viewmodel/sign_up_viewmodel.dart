@@ -34,6 +34,9 @@ abstract class _SignUpVMBase with Store {
   String imageUrl = "";
 
   @observable
+  String name = "";
+
+  @observable
   File? imageFile;
 
   @action
@@ -44,6 +47,9 @@ abstract class _SignUpVMBase with Store {
 
   @action
   void changePassword(String value) => password = value;
+
+  @action
+  void changeName(String value) => name = value;
 
   @action
   void next() {
@@ -63,7 +69,8 @@ abstract class _SignUpVMBase with Store {
           textColor: AppColors.red);
     }
     await FirebaseServices.user.doc(email).set({
-      "name": userName,
+      "name": name,
+      "userName": userName,
       "profileImageUrl": imageUrl,
       "email": email,
       "status": "unavailable",

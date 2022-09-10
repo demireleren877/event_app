@@ -31,15 +31,6 @@ AppBar buildHomeAppBar(BuildContext context) {
         icon: Icon(Icons.chat_bubble_rounded, color: Colors.white, size: 25.sp),
       ),
       context.emptySizedWidthBoxLow3x,
-      IconButton(
-        onPressed: () {},
-        icon: Icon(
-          Icons.menu,
-          color: Colors.white,
-          size: 30.sp,
-        ),
-      ),
-      context.emptySizedWidthBoxLow3x,
     ],
   );
 }

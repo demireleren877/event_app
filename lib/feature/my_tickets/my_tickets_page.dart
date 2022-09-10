@@ -20,11 +20,8 @@ class MyTickets extends StatelessWidget {
         body: Scaffold(
           backgroundColor: Colors.black,
           appBar: buildAppBar(context),
-          body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-              stream: FirebaseFirestore.instance
-                  .collection("users")
-                  .doc(FirebaseServices.auth.currentUser!.email)
-                  .snapshots(),
+          body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+              stream: FirebaseServices().getEventsforUser(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ScrollConfiguration(

@@ -18,7 +18,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: profileAppBar(),
+      appBar: profileAppBar(context),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         padding: context.horizontalPaddingNormal,
@@ -143,11 +143,13 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  AppBar profileAppBar() => AppBar(
+  AppBar profileAppBar(context) => AppBar(
         backgroundColor: Colors.black,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/menu");
+            },
             icon: Icon(
               Icons.more_horiz,
               color: Colors.white,
@@ -224,25 +226,36 @@ class LastEventStreamBuilder extends StatelessWidget {
             final docs = snapshot.data!.docs;
             return SizedBox(
               height: 170.h,
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: docs.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Stack(
-                    children: [
-                      EventCardforProfile(
-                        event: Event.fromJson(
-                          docs[index].data(),
+              child: docs.isEmpty
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.event_busy_outlined,
+                          size: 70.sp,
+                          color: Colors.white54,
                         ),
-                      ),
-                      DateboxForProfile(
-                        date: Event.fromJson(docs[index].data()).date,
-                      ),
-                    ],
-                  );
-                },
-              ),
+                      ],
+                    )
+                  : ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: docs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Stack(
+                          children: [
+                            EventCardforProfile(
+                              event: Event.fromJson(
+                                docs[index].data(),
+                              ),
+                            ),
+                            DateboxForProfile(
+                              date: Event.fromJson(docs[index].data()).date,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
             );
           }
           return const CenteredProgressIndicator();
@@ -335,7 +348,7 @@ class UserStreamBuilder extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Burkay Emiroğlu",
+                        output["name"],
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.sp,
@@ -343,7 +356,7 @@ class UserStreamBuilder extends StatelessWidget {
                       ),
                       context.emptySizedHeightBoxLow,
                       Text(
-                        "@" + output["name"],
+                        "@" + output["userName"],
                         style: TextStyle(
                           color: Colors.white54,
                           fontSize: 18.sp,
@@ -360,7 +373,7 @@ class UserStreamBuilder extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "31",
+                        "45",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.sp,
@@ -379,7 +392,7 @@ class UserStreamBuilder extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "69",
+                        "76",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.sp,

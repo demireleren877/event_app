@@ -1,5 +1,6 @@
 import 'package:event_app/feature/details/details_page.dart';
 import 'package:event_app/feature/home/home_page.dart';
+import 'package:event_app/feature/menu_page/menu_screen.dart';
 import 'package:event_app/feature/my_tickets/my_tickets_page.dart';
 import 'package:event_app/feature/ticket/ticket_page.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,9 @@ class Routes {
   static const String login = "/login";
   static const String profile = "/profile";
   static const String search = "/search";
+  static const String menu = "/menu";
   static final routes = <String, WidgetBuilder>{
+    menu: (BuildContext context) => const MenuPage(),
     search: (BuildContext context) => const SearchPage(),
     profile: (BuildContext context) => const ProfilePage(),
     home: (BuildContext context) => HomePage(),

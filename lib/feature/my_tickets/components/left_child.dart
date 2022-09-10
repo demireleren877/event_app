@@ -22,7 +22,7 @@ class LeftChild extends StatelessWidget {
             ),
             image: DecorationImage(
               image: NetworkImage(
-                data["takenTickets"][index]["image"],
+                data["image"],
               ),
               fit: BoxFit.fill,
             ),
@@ -38,7 +38,7 @@ class LeftChild extends StatelessWidget {
         ),
         Center(
           child: Text(
-            data["takenTickets"][index]["title"],
+            data["title"],
             style: context.textTheme.headline5,
           ),
         ),

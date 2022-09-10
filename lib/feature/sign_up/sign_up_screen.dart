@@ -1,3 +1,4 @@
+import 'package:event_app/feature/sign_up/components/first_step.dart';
 import 'package:event_app/feature/sign_up/viewmodel/sign_up_viewmodel.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class SignUpPage extends StatelessWidget {
           controller: _signUpViewmodel.pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
+            FirstStep(signUpViewmodel: _signUpViewmodel),
             PageOne(signUpViewmodel: _signUpViewmodel),
             PageTwo(signUpViewmodel: _signUpViewmodel),
             PageThree(signUpViewmodel: _signUpViewmodel),
