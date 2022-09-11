@@ -71,6 +71,11 @@ abstract class _SignUpVMBase with Store {
     await FirebaseServices.user.doc(email).set({
       "name": name,
       "userName": userName,
+      "phoneNumber": "",
+      "takenTickets": [],
+      "followers": [],
+      "following": [],
+      "birthDate": DateTime.now(),
       "profileImageUrl": imageUrl,
       "email": email,
       "status": "unavailable",

@@ -15,6 +15,9 @@ abstract class _UpdateProfileVMBase with Store {
   String? imageUrl = "";
 
   @observable
+  String phoneNumber = "";
+
+  @observable
   File? imageFile;
 
   @observable
@@ -27,6 +30,9 @@ abstract class _UpdateProfileVMBase with Store {
   DateTime? birthDate;
 
   @action
+  onPhoneNumberChanged(String value) => phoneNumber = value;
+
+  @action
   onDateChanged(DateTime date) => birthDate = date;
 
   @action
@@ -36,13 +42,15 @@ abstract class _UpdateProfileVMBase with Store {
   onUsernameChanged(String value) => username = value;
 
   @action
-  Future updateProfile(String name, String userName, DateTime birthDate) async {
+  Future updateProfile(String name, String userName, DateTime birthDate,
+      String phoneNumber) async {
     await FirebaseServices.user
         .doc(FirebaseServices.auth.currentUser!.email)
         .update({
       "name": name,
       "birthDate": birthDate,
       "userName": userName,
+      "phoneNumber": phoneNumber,
       "profileImageUrl": imageUrl == ""
           ? await FirebaseServices.user
               .doc(FirebaseServices.auth.currentUser!.email)

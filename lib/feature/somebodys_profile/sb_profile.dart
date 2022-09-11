@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_app/feature/profile/profile_screen.dart';
+import 'package:event_app/feature/somebodys_profile/components/follow_business.dart';
+import 'package:event_app/feature/somebodys_profile/viewmodel/sb_profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
@@ -9,10 +11,11 @@ import '../../core/components/centered_progress.dart';
 import '../../core/models/event_model.dart';
 import '../../core/models/user_model.dart';
 import '../../core/services/firebase_services.dart';
-import '../sign_up/components/signup_button.dart';
 
 class SomeBodysProfile extends StatelessWidget {
-  const SomeBodysProfile({Key? key}) : super(key: key);
+  SomeBodysProfile({Key? key}) : super(key: key);
+  final FirebaseServices _firebaseServices = FirebaseServices();
+  final SBSProfileVM _sbsProfileVM = SBSProfileVM();
 
   @override
   Widget build(BuildContext context) {
@@ -80,86 +83,61 @@ class SomeBodysProfile extends StatelessWidget {
                     ],
                   ),
                   context.emptySizedHeightBoxLow3x,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "45",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.sp,
-                            ),
-                          ),
-                          Text(
-                            "Takipçi",
-                            style: TextStyle(
-                              color: Colors.white54,
-                              fontSize: 18.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                      context.emptySizedWidthBoxLow,
-                      Column(
-                        children: [
-                          Text(
-                            "76",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.sp,
-                            ),
-                          ),
-                          Text(
-                            "Takip Edilen",
-                            style: TextStyle(
-                              color: Colors.white54,
-                              fontSize: 18.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  context.emptySizedHeightBoxLow3x,
-                  SignUpButton(
-                    buttonColor: const Color(0xFF7860E1),
-                    textColor: Colors.white,
-                    text: "Takip Et",
-                    onPressed: () {},
+                  FutureBuilder(
+                    future: _firebaseServices.amiFollowing(user.email),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        return FollowersAndFollowing(
+                          firebaseServices: _firebaseServices,
+                          user: user,
+                          isFollowed: snapshot.data,
+                        );
+                      }
+                      return const CenteredProgressIndicator();
+                    },
                   ),
                   context.emptySizedHeightBoxLow3x,
                 ],
               ),
             ),
             SliverToBoxAdapter(
-              child: user.status == "unavailable"
-                  ? Container(
-                      margin: context.verticalPaddingHigh,
-                      child: Center(
-                        child: Icon(
-                          Icons.lock_outlined,
-                          size: context.height * .2,
-                          color: Colors.white54,
-                        ),
-                      ),
-                    )
-                  : Column(
-                      children: [
-                        Text(
-                          "Son Etkinlikler",
-                          style: context.textTheme.bodyText2?.copyWith(
-                            color: Colors.white,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w300,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                        context.emptySizedHeightBoxLow3x,
-                        LastEventStreamBuilderforSb(email: user.email),
-                      ],
-                    ),
+              child: StreamBuilder(
+                stream: FirebaseServices.user.doc(user.email).snapshots(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    final docs = snapshot.data;
+                    return user.status == "available" ||
+                            docs["followers"].contains(
+                                FirebaseServices.auth.currentUser!.email)
+                        ? Column(
+                            children: [
+                              Text(
+                                "Son Etkinlikler",
+                                style: context.textTheme.bodyText2?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w300,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                              context.emptySizedHeightBoxLow3x,
+                              LastEventStreamBuilderforSb(email: user.email),
+                            ],
+                          )
+                        : Container(
+                            margin: context.verticalPaddingHigh,
+                            child: Center(
+                              child: Icon(
+                                Icons.lock_outlined,
+                                size: context.height * .2,
+                                color: Colors.white54,
+                              ),
+                            ),
+                          );
+                  }
+                  return const CenteredProgressIndicator();
+                },
+              ),
             ),
           ],
         ),

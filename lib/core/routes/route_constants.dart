@@ -5,6 +5,7 @@ import 'package:event_app/feature/my_tickets/my_tickets_page.dart';
 import 'package:event_app/feature/ticket/ticket_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../feature/follow_requests/follow_requests_screen.dart';
 import '../../feature/login/login_screen.dart';
 import '../../feature/profile/profile_screen.dart';
 import '../../feature/search/search_screen.dart';
@@ -27,9 +28,11 @@ class Routes {
   static const String splash = "/splash";
   static const String someBodysProfile = "/somebodysProfile";
   static const String updateProfile = "/updateProfile";
+  static const String followRequests = "/followRequests";
   static final routes = <String, WidgetBuilder>{
+    followRequests: (BuildContext context) => FollowRequestsPage(),
     updateProfile: (BuildContext context) => UpdateProfile(),
-    someBodysProfile: (BuildContext context) => const SomeBodysProfile(),
+    someBodysProfile: (BuildContext context) => SomeBodysProfile(),
     menu: (BuildContext context) => const MenuPage(),
     search: (BuildContext context) => SearchPage(),
     profile: (BuildContext context) => const ProfilePage(),

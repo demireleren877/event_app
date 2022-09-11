@@ -17,19 +17,22 @@ class User {
   final String status;
   @HiveField(6)
   final DateTime birthDate;
+  @HiveField(7)
+  final String phoneNumber;
 
-  User({
-    required this.birthDate,
-    required this.status,
-    required this.userName,
-    required this.name,
-    required this.email,
-    required this.profileImageUrl,
-    required this.takenTickets,
-  });
+  User(
+      {required this.birthDate,
+      required this.status,
+      required this.userName,
+      required this.name,
+      required this.email,
+      required this.profileImageUrl,
+      required this.takenTickets,
+      required this.phoneNumber});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
+      phoneNumber: json['phoneNumber'],
       birthDate: json['birthDate'].toDate(),
       status: json['status'],
       name: json['name'],

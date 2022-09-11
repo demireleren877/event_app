@@ -370,7 +370,9 @@ class UserStreamBuilder extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "45",
+                        output["followers"] == null
+                            ? "0"
+                            : output["followers"].length.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.sp,
@@ -389,7 +391,9 @@ class UserStreamBuilder extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "76",
+                        output["following"] == null
+                            ? "0"
+                            : output["following"].length.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.sp,

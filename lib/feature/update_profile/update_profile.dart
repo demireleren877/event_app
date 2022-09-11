@@ -90,8 +90,11 @@ class UpdateProfile extends StatelessWidget {
           ),
           context.emptySizedHeightBoxLow3x,
           TextField(
+            onChanged: (value) => _updateProfileVM.onPhoneNumberChanged(value),
             decoration: InputDecoration(
-              hintText: "Telefon Numarası",
+              hintText: _updateProfileVM.phoneNumber == ""
+                  ? user.phoneNumber
+                  : _updateProfileVM.phoneNumber,
               hintStyle: context.textTheme.bodyText2?.copyWith(
                 fontSize: context.height * 0.025,
               ),
@@ -148,15 +151,17 @@ class UpdateProfile extends StatelessWidget {
           TextButton(
             onPressed: () {
               _updateProfileVM.updateProfile(
-                  _updateProfileVM.name == ""
-                      ? user.name
-                      : _updateProfileVM.name,
-                  _updateProfileVM.username == ""
-                      ? user.userName
-                      : _updateProfileVM.username,
-                  _updateProfileVM.birthDate == null
-                      ? user.birthDate
-                      : _updateProfileVM.birthDate!);
+                _updateProfileVM.name == "" ? user.name : _updateProfileVM.name,
+                _updateProfileVM.username == ""
+                    ? user.userName
+                    : _updateProfileVM.username,
+                _updateProfileVM.birthDate == null
+                    ? user.birthDate
+                    : _updateProfileVM.birthDate!,
+                _updateProfileVM.phoneNumber == ""
+                    ? user.phoneNumber
+                    : _updateProfileVM.phoneNumber,
+              );
             },
             child: Text(
               "Kaydet",

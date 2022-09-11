@@ -18,7 +18,9 @@ AppBar buildHomeAppBar(BuildContext context) {
     backgroundColor: Colors.black,
     actions: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "/followRequests");
+        },
         icon: Icon(
           Icons.favorite,
           color: Colors.white,

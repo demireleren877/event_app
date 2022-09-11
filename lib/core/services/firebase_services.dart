@@ -16,6 +16,87 @@ class FirebaseServices {
         .snapshots();
   }
 
+  sendFollowRequest(String userId) {
+    user.doc(userId).update({
+      "followRequests": FieldValue.arrayUnion([auth.currentUser!.email])
+    });
+  }
+
+  unSendFollowRequest(String userId) {
+    user.doc(userId).update({
+      "followRequests": FieldValue.arrayRemove([auth.currentUser!.email])
+    });
+  }
+
+  amiSentFollowRequest(String userId) {
+    return user.doc(userId).get().then((value) =>
+        value.data()!["followRequests"].contains(auth.currentUser!.email));
+  }
+
+  acceptFollowRequest(String userId) {
+    user.doc(auth.currentUser!.email).update({
+      "followers": FieldValue.arrayUnion([userId])
+    });
+    user.doc(userId).update({
+      "following": FieldValue.arrayUnion([auth.currentUser!.email])
+    });
+    user.doc(auth.currentUser!.email).update({
+      "followRequests": FieldValue.arrayRemove([userId])
+    });
+  }
+
+  unAcceptFollowRequest(String userId) {
+    user.doc(auth.currentUser!.email).update({
+      "followers": FieldValue.arrayRemove([userId])
+    });
+    user.doc(userId).update({
+      "following": FieldValue.arrayRemove([auth.currentUser!.email])
+    });
+  }
+
+  followUser(String userId) {
+    user.doc(auth.currentUser!.email).update({
+      "following": FieldValue.arrayUnion([userId])
+    });
+    user.doc(userId).update({
+      "followers": FieldValue.arrayUnion([auth.currentUser!.email])
+    });
+  }
+
+  getFollowersCount(String userId) {
+    return user
+        .doc(userId)
+        .get()
+        .then((value) => value.data()!["followers"].length);
+  }
+
+  getFollowingCount(String userId) {
+    return user
+        .doc(userId)
+        .get()
+        .then((value) => value.data()!["following"].length);
+  }
+
+  amiFollowing(String userId) {
+    return user
+        .doc(auth.currentUser!.email)
+        .get()
+        .then((value) => value.data()!["following"].contains(userId));
+  }
+
+  unfollowUser(String userId) {
+    user.doc(auth.currentUser!.email).update({
+      "following": FieldValue.arrayRemove([userId])
+    });
+    user.doc(userId).update({
+      "followers": FieldValue.arrayRemove([auth.currentUser!.email])
+    });
+  }
+
+  getFollowRequestsNames(String docId) {
+    return user.doc(docId).get().then((value) => value.data()!["userName"]);
+  }
+
   getEvents() {
     return firestore.collection("events").orderBy("id").snapshots();
   }

@@ -25,6 +25,22 @@ mixin _$UpdateProfileVM on _UpdateProfileVMBase, Store {
     });
   }
 
+  late final _$phoneNumberAtom =
+      Atom(name: '_UpdateProfileVMBase.phoneNumber', context: context);
+
+  @override
+  String get phoneNumber {
+    _$phoneNumberAtom.reportRead();
+    return super.phoneNumber;
+  }
+
+  @override
+  set phoneNumber(String value) {
+    _$phoneNumberAtom.reportWrite(value, super.phoneNumber, () {
+      super.phoneNumber = value;
+    });
+  }
+
   late final _$imageFileAtom =
       Atom(name: '_UpdateProfileVMBase.imageFile', context: context);
 
@@ -94,9 +110,9 @@ mixin _$UpdateProfileVM on _UpdateProfileVMBase, Store {
 
   @override
   Future<dynamic> updateProfile(
-      String name, String userName, DateTime birthDate) {
+      String name, String userName, DateTime birthDate, String phoneNumber) {
     return _$updateProfileAsyncAction
-        .run(() => super.updateProfile(name, userName, birthDate));
+        .run(() => super.updateProfile(name, userName, birthDate, phoneNumber));
   }
 
   late final _$setProfileImageAsyncAction =
@@ -117,6 +133,17 @@ mixin _$UpdateProfileVM on _UpdateProfileVMBase, Store {
 
   late final _$_UpdateProfileVMBaseActionController =
       ActionController(name: '_UpdateProfileVMBase', context: context);
+
+  @override
+  dynamic onPhoneNumberChanged(String value) {
+    final _$actionInfo = _$_UpdateProfileVMBaseActionController.startAction(
+        name: '_UpdateProfileVMBase.onPhoneNumberChanged');
+    try {
+      return super.onPhoneNumberChanged(value);
+    } finally {
+      _$_UpdateProfileVMBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic onDateChanged(DateTime date) {
@@ -155,6 +182,7 @@ mixin _$UpdateProfileVM on _UpdateProfileVMBase, Store {
   String toString() {
     return '''
 imageUrl: ${imageUrl},
+phoneNumber: ${phoneNumber},
 imageFile: ${imageFile},
 name: ${name},
 username: ${username},

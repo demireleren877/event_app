@@ -117,18 +117,21 @@ class SearchPage extends StatelessWidget {
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           final doc = docs[index];
-                                          if (doc["userName"]
-                                                  .toString()
-                                                  .toLowerCase()
-                                                  .contains(_searchVM
-                                                      .searchValue
-                                                      .toLowerCase()) ||
-                                              doc["name"]
-                                                  .toString()
-                                                  .toLowerCase()
-                                                  .contains(_searchVM
-                                                      .searchValue
-                                                      .toLowerCase())) {
+                                          if ((doc["userName"]
+                                                      .toString()
+                                                      .toLowerCase()
+                                                      .contains(_searchVM
+                                                          .searchValue
+                                                          .toLowerCase()) ||
+                                                  doc["name"]
+                                                      .toString()
+                                                      .toLowerCase()
+                                                      .contains(_searchVM
+                                                          .searchValue
+                                                          .toLowerCase())) &&
+                                              doc["email"] !=
+                                                  FirebaseServices.auth
+                                                      .currentUser!.email) {
                                             return ListTile(
                                               onTap: () {
                                                 Navigator.pushNamed(
