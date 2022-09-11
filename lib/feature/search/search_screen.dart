@@ -10,6 +10,7 @@ import 'package:kartal/kartal.dart';
 class SearchPage extends StatelessWidget {
   SearchPage({Key? key}) : super(key: key);
   final SearchVM _searchVM = SearchVM();
+  final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -26,6 +27,7 @@ class SearchPage extends StatelessWidget {
                     SizedBox(
                       width: context.width * 0.7,
                       child: TextField(
+                        controller: _searchController,
                         onChanged: (value) =>
                             _searchVM.changeSearchValue(value),
                         decoration: InputDecoration(
@@ -50,7 +52,10 @@ class SearchPage extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _searchController.clear();
+                        _searchVM.changeSearchValue("");
+                      },
                       child: Text(
                         "İptal",
                         style: context.textTheme.bodyText2?.copyWith(
@@ -163,3 +168,4 @@ class SearchPage extends StatelessWidget {
             )));
   }
 }
+// html daha ii en iyi dil

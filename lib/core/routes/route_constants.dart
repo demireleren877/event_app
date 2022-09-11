@@ -10,6 +10,7 @@ import '../../feature/profile/profile_screen.dart';
 import '../../feature/search/search_screen.dart';
 import '../../feature/sign_up/sign_up_screen.dart';
 import '../../feature/somebodys_profile/sb_profile.dart';
+import '../../feature/update_profile/update_profile.dart';
 
 class Routes {
   Routes._();
@@ -25,7 +26,9 @@ class Routes {
   static const String menu = "/menu";
   static const String splash = "/splash";
   static const String someBodysProfile = "/somebodysProfile";
+  static const String updateProfile = "/updateProfile";
   static final routes = <String, WidgetBuilder>{
+    updateProfile: (BuildContext context) => UpdateProfile(),
     someBodysProfile: (BuildContext context) => const SomeBodysProfile(),
     menu: (BuildContext context) => const MenuPage(),
     search: (BuildContext context) => SearchPage(),

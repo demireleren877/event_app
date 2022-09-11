@@ -24,9 +24,9 @@ class AppBarProfileImage extends StatelessWidget {
         } else if (!snapshot.hasData) {
           return const CenteredProgressIndicator();
         }
-        return output["profileImageUrl"] == null
+        return output["profileImageUrl"] == ""
             ? Icon(
-                Icons.person_rounded,
+                Icons.person_outline_rounded,
                 size: 30.sp,
                 color: Colors.white,
               )

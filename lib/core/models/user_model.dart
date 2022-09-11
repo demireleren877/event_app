@@ -15,8 +15,11 @@ class User {
   final String userName;
   @HiveField(5)
   final String status;
+  @HiveField(6)
+  final DateTime birthDate;
 
   User({
+    required this.birthDate,
     required this.status,
     required this.userName,
     required this.name,
@@ -27,6 +30,7 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
+      birthDate: json['birthDate'].toDate(),
       status: json['status'],
       name: json['name'],
       userName: json['userName'],

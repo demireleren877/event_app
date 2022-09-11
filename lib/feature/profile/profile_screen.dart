@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
 import '../../core/colors/app_colors.dart';
 import '../../core/models/event_model.dart';
+import '../../core/models/user_model.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -24,13 +25,6 @@ class ProfilePage extends StatelessWidget {
         padding: context.horizontalPaddingNormal,
         children: [
           const UserStreamBuilder(),
-          context.emptySizedHeightBoxLow3x,
-          SignUpButton(
-            buttonColor: const Color(0xFF7860E1),
-            textColor: Colors.white,
-            text: "Profili Düzenle",
-            onPressed: () {},
-          ),
           context.emptySizedHeightBoxLow3x,
           Text(
             "Son Etkinlikler",
@@ -340,7 +334,7 @@ class UserStreamBuilder extends StatelessWidget {
                   CircleAvatar(
                     radius: 50.r,
                     backgroundColor: AppColors.transparent,
-                    backgroundImage: output["profileImageUrl"] == null
+                    backgroundImage: output["profileImageUrl"] == ""
                         ? const AssetImage("assets/image.png") as ImageProvider
                         : NetworkImage(
                             output["profileImageUrl"],
@@ -411,6 +405,19 @@ class UserStreamBuilder extends StatelessWidget {
                     ],
                   ),
                 ],
+              ),
+              context.emptySizedHeightBoxLow3x,
+              SignUpButton(
+                buttonColor: const Color(0xFF7860E1),
+                textColor: Colors.white,
+                text: "Profili Düzenle",
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    "/updateProfile",
+                    arguments: User.fromJson(output.data()),
+                  );
+                },
               ),
             ],
           );
