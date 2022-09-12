@@ -9,13 +9,11 @@ import '../../core/colors/app_colors.dart';
 import '../../core/models/user_model.dart';
 
 class UpdateProfile extends StatelessWidget {
-  UpdateProfile({Key? key}) : super(key: key);
+  UpdateProfile({Key? key, required this.user}) : super(key: key);
   final UpdateProfileVM _updateProfileVM = UpdateProfileVM();
-
+  final User user;
   @override
   Widget build(BuildContext context) {
-    final user = ModalRoute.of(context)?.settings.arguments as User;
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: ListView(

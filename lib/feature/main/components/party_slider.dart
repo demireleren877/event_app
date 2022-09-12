@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_app/feature/details/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../../core/models/event_model.dart';
-import '../../../core/routes/route_constants.dart';
 import 'party_card.dart';
 
 class PartySlider extends StatelessWidget {
@@ -26,10 +27,11 @@ class PartySlider extends StatelessWidget {
           final doc = docs[index];
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
+              pushNewScreen(
                 context,
-                Routes.eventDetail,
-                arguments: Event.fromJson(doc.data()),
+                screen: EventDetailsPage(
+                  event: Event.fromJson(doc.data()),
+                ),
               );
             },
             child: PartyCard(doc: doc),

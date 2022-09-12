@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+
+import '../somebodys_profile/sb_profile.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({Key? key}) : super(key: key);
@@ -134,11 +137,12 @@ class SearchPage extends StatelessWidget {
                                                       .currentUser!.email) {
                                             return ListTile(
                                               onTap: () {
-                                                Navigator.pushNamed(
+                                                pushNewScreen(
                                                   context,
-                                                  "/somebodysProfile",
-                                                  arguments: User.fromJson(
-                                                    doc.data(),
+                                                  screen: SomeBodysProfile(
+                                                    user: User.fromJson(
+                                                      doc.data(),
+                                                    ),
                                                   ),
                                                 );
                                               },

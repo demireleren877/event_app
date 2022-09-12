@@ -1,7 +1,9 @@
+import 'package:event_app/feature/follow_requests/follow_requests_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 AppBar buildHomeAppBar(BuildContext context) {
   return AppBar(
@@ -19,7 +21,15 @@ AppBar buildHomeAppBar(BuildContext context) {
     actions: [
       IconButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/followRequests");
+          if (ModalRoute.of(context)!.settings.name != "/followRequests") {
+            pushNewScreenWithRouteSettings(
+              context,
+              settings: const RouteSettings(name: "/followRequests"),
+              screen: FollowRequestsPage(),
+              withNavBar: true,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
+          }
         },
         icon: Icon(
           Icons.favorite,
@@ -36,3 +46,5 @@ AppBar buildHomeAppBar(BuildContext context) {
     ],
   );
 }
+
+class FollowRequestsScreen {}

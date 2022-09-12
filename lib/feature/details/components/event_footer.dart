@@ -15,7 +15,7 @@ class EventFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        minHeight: context.height * 0.35,
+        minHeight: context.height * 0.45,
         maxHeight: context.height,
       ),
       decoration: BoxDecoration(

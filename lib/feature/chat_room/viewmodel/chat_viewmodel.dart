@@ -79,4 +79,11 @@ abstract class _ChatVMBase with Store {
       "time": DateTime.now().millisecondsSinceEpoch.toString(),
     });
   }
+
+  getCurrentUsername() {
+    return FirebaseServices.user
+        .doc(FirebaseServices.auth.currentUser!.email)
+        .get()
+        .then((value) => value.data()!["name"]);
+  }
 }

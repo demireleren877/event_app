@@ -1,9 +1,10 @@
+import 'package:event_app/core/models/event_model.dart';
+import 'package:event_app/feature/details/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-import '../../../core/models/event_model.dart';
-import '../../../core/routes/route_constants.dart';
 import '../../../core/utilities/scroll_behavior.dart';
 import 'event_detail_column.dart';
 import 'event_image.dart';
@@ -27,16 +28,15 @@ class EventListWidget extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(
+                    pushNewScreen(
                       context,
-                      Routes.eventDetail,
-                      arguments: Event.fromJson(
-                        docs
+                      screen: EventDetailsPage(
+                        event: Event.fromJson(docs
                             .where((element) =>
                                 element.data()['id'].toString() ==
                                 eventList[index].description)
                             .first
-                            .data(),
+                            .data()),
                       ),
                     );
                   },

@@ -1,7 +1,9 @@
 import 'package:event_app/core/services/firebase_services.dart';
+import 'package:event_app/feature/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../core/colors/app_colors.dart';
 import '../../core/components/centered_progress.dart';
@@ -86,8 +88,7 @@ class MenuPage extends StatelessWidget {
                           if (MenuData.menuItems[index]["title"] ==
                               "Oturumu Kapat") {
                             FirebaseServices.auth.signOut().then((value) => {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, "/login", (route) => false)
+                                  pushNewScreen(context, screen: LoginScreen())
                                 });
                           }
                           // Navigator.pushNamed(

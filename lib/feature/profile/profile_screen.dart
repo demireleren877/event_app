@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_app/core/components/centered_progress.dart';
 import 'package:event_app/core/services/firebase_services.dart';
+import 'package:event_app/feature/details/details_page.dart';
+import 'package:event_app/feature/menu_page/menu_screen.dart';
 import 'package:event_app/feature/sign_up/components/signup_button.dart';
+import 'package:event_app/feature/update_profile/update_profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../core/colors/app_colors.dart';
 import '../../core/models/event_model.dart';
 import '../../core/models/user_model.dart';
@@ -50,7 +54,7 @@ class ProfilePage extends StatelessWidget {
           ),
           context.emptySizedHeightBoxLow3x,
           SizedBox(
-            height: 170.h,
+            height: context.dynamicHeight(0.35),
             child: ValueListenableBuilder(
               valueListenable: Hive.box("events").listenable(),
               builder: (context, Box movieBox, _) => movieBox.length != 0
@@ -143,7 +147,10 @@ class ProfilePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/menu");
+              pushNewScreen(
+                context,
+                screen: const MenuPage(),
+              );
             },
             icon: Icon(
               Icons.more_horiz,
@@ -272,10 +279,9 @@ class EventCardforProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
+        pushNewScreen(
           context,
-          "/eventDetail",
-          arguments: event,
+          screen: EventDetailsPage(event: event),
         );
       },
       child: Container(
@@ -416,10 +422,10 @@ class UserStreamBuilder extends StatelessWidget {
                 textColor: Colors.white,
                 text: "Profili Düzenle",
                 onPressed: () {
-                  Navigator.pushNamed(
+                  pushNewScreen(
                     context,
-                    "/updateProfile",
-                    arguments: User.fromJson(output.data()),
+                    screen: UpdateProfile(user: User.fromJson(output.data())),
+                    withNavBar: true,
                   );
                 },
               ),

@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_app/feature/details/details_page.dart';
 import 'package:event_app/feature/profile/profile_screen.dart';
 import 'package:event_app/feature/somebodys_profile/components/follow_business.dart';
-import 'package:event_app/feature/somebodys_profile/viewmodel/sb_profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../core/colors/app_colors.dart';
 import '../../core/components/centered_progress.dart';
@@ -13,13 +14,11 @@ import '../../core/models/user_model.dart';
 import '../../core/services/firebase_services.dart';
 
 class SomeBodysProfile extends StatelessWidget {
-  SomeBodysProfile({Key? key}) : super(key: key);
+  SomeBodysProfile({Key? key, required this.user}) : super(key: key);
   final FirebaseServices _firebaseServices = FirebaseServices();
-  final SBSProfileVM _sbsProfileVM = SBSProfileVM();
-
+  final User user;
   @override
   Widget build(BuildContext context) {
-    final user = ModalRoute.of(context)?.settings.arguments as User;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -218,11 +217,7 @@ class EventCardforProfileforSB extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          "/eventDetail",
-          arguments: event,
-        );
+        pushNewScreen(context, screen: EventDetailsPage(event: event));
       },
       child: Container(
         margin: EdgeInsets.only(right: 10.w),

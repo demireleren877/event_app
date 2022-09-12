@@ -1,9 +1,10 @@
+import 'package:event_app/feature/details/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../../core/components/centered_progress.dart';
 import '../../../core/models/event_model.dart';
-import '../../../core/routes/route_constants.dart';
 import '../../../core/services/firebase_services.dart';
 import '../viewmodel/main_viewmodel.dart';
 import 'search_card.dart';
@@ -38,10 +39,11 @@ class SearchResult extends StatelessWidget {
                       .contains(mainVM.searchValue.toLowerCase())) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(
+                        pushNewScreen(
                           context,
-                          Routes.eventDetail,
-                          arguments: Event.fromJson(doc.data()),
+                          screen: EventDetailsPage(
+                            event: Event.fromJson(doc.data()),
+                          ),
                         );
                       },
                       child: SearchCard(doc: doc),
