@@ -96,7 +96,7 @@ class SearchPage extends StatelessWidget {
                 ),
                 Observer(builder: (_) {
                   return SizedBox(
-                    height: context.height * 0.75,
+                    height: context.height * 0.65,
                     child: TabBarView(
                       children: [
                         _searchVM.searchValue.isEmpty

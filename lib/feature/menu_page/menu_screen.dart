@@ -88,7 +88,8 @@ class MenuPage extends StatelessWidget {
                           if (MenuData.menuItems[index]["title"] ==
                               "Oturumu Kapat") {
                             FirebaseServices.auth.signOut().then((value) => {
-                                  pushNewScreen(context, screen: LoginScreen())
+                                  pushNewScreen(context,
+                                      withNavBar: false, screen: LoginScreen())
                                 });
                           }
                           // Navigator.pushNamed(

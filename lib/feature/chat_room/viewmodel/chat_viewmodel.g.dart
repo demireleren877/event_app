@@ -29,31 +29,41 @@ mixin _$ChatVM on _ChatVMBase, Store {
       AsyncAction('_ChatVMBase.sendImage', context: context);
 
   @override
-  Future sendImage(dynamic currentLecture, dynamic currentUser) {
-    return _$sendImageAsyncAction
-        .run(() => super.sendImage(currentLecture, currentUser));
+  Future sendImage(dynamic currentLecture, dynamic currentUser,
+      dynamic messagePath, dynamic isDM, dynamic dmPath) {
+    return _$sendImageAsyncAction.run(() => super
+        .sendImage(currentLecture, currentUser, messagePath, isDM, dmPath));
   }
 
   late final _$uploadImageAsyncAction =
       AsyncAction('_ChatVMBase.uploadImage', context: context);
 
   @override
-  Future<dynamic> uploadImage(dynamic currentLecture, dynamic currentUser) {
-    return _$uploadImageAsyncAction
-        .run(() => super.uploadImage(currentLecture, currentUser));
+  Future<dynamic> uploadImage(dynamic currentLecture, dynamic currentUser,
+      dynamic messagePath, dynamic isDM, dynamic dmPath) {
+    return _$uploadImageAsyncAction.run(() => super
+        .uploadImage(currentLecture, currentUser, messagePath, isDM, dmPath));
   }
 
   late final _$_ChatVMBaseActionController =
       ActionController(name: '_ChatVMBase', context: context);
 
   @override
-  dynamic sendMessage(dynamic messageController, dynamic scrollController,
-      dynamic currentUser, dynamic currentLecture) {
+  dynamic sendMessage(
+      dynamic messageController,
+      dynamic scrollController,
+      dynamic currentUser,
+      dynamic currentLecture,
+      dynamic messagePath,
+      dynamic isDM,
+      dynamic dmPath,
+      dynamic lmPath,
+      dynamic lmdPath) {
     final _$actionInfo = _$_ChatVMBaseActionController.startAction(
         name: '_ChatVMBase.sendMessage');
     try {
-      return super.sendMessage(
-          messageController, scrollController, currentUser, currentLecture);
+      return super.sendMessage(messageController, scrollController, currentUser,
+          currentLecture, messagePath, isDM, dmPath, lmPath, lmdPath);
     } finally {
       _$_ChatVMBaseActionController.endAction(_$actionInfo);
     }

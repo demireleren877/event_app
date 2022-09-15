@@ -37,6 +37,7 @@ class MainScreen extends StatelessWidget {
                 behavior: MyBehavior(),
                 child: Observer(builder: (a) {
                   return ListView(
+                    shrinkWrap: true,
                     padding: context.paddingLow,
                     children: [
                       WelcomeText(cacheManager: _cacheManager),
@@ -81,6 +82,7 @@ class MainScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                                context.emptySizedHeightBoxNormal
                               ],
                             ),
                     ],

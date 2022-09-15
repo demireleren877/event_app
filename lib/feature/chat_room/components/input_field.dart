@@ -65,6 +65,9 @@ class InputField extends StatelessWidget {
                       chatVM: _chatVM,
                       currentLecture: widget.currentLecture,
                       currentUser: widget.currentUser,
+                      messagePath: widget.messagePath,
+                      isDM: widget.isDM,
+                      dmPath: widget.dmPath,
                     ),
                     SizedBox(width: 5.w),
                     SendMessageButton(

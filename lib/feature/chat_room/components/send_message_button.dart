@@ -37,6 +37,11 @@ class SendMessageButton extends StatelessWidget {
                 _scrollController,
                 widget.currentUser,
                 widget.currentLecture,
+                widget.messagePath,
+                widget.isDM,
+                widget.dmPath,
+                widget.lmPath,
+                widget.lmdPath,
               );
       },
     );

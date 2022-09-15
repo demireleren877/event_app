@@ -12,6 +12,7 @@ import '../../core/components/centered_progress.dart';
 import '../../core/models/event_model.dart';
 import '../../core/models/user_model.dart';
 import '../../core/services/firebase_services.dart';
+import '../chat_room/chat_screen.dart';
 
 class SomeBodysProfile extends StatelessWidget {
   SomeBodysProfile({Key? key, required this.user}) : super(key: key);
@@ -24,13 +25,79 @@ class SomeBodysProfile extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.more_horiz,
-              color: Colors.white,
-              size: 35.sp,
-            ),
+          FutureBuilder(
+            future: _firebaseServices.getCurrentUsername(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              return IconButton(
+                onPressed: () {
+                  showMenu(
+                    // this is the line that shows the menu
+                    context: context,
+                    color: Colors.grey.shade900,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: context.normalBorderRadius,
+                    ),
+                    position: RelativeRect.fromLTRB(500.w, 56.h, 0, 0),
+                    items: [
+                      PopupMenuItem(
+                        onTap: () {
+                          pushNewScreen(
+                            context,
+                            withNavBar: false,
+                            screen: ChatScreen(
+                              stream: FirebaseServices.user
+                                  .doc(FirebaseServices.auth.currentUser!.email)
+                                  .collection("chats")
+                                  .doc(user.email)
+                                  .collection("messages")
+                                  .orderBy("time", descending: true)
+                                  .snapshots(),
+                              messagePath: FirebaseServices.user
+                                  .doc(FirebaseServices.auth.currentUser!.email)
+                                  .collection("chats")
+                                  .doc(user.email)
+                                  .collection("messages"),
+                              currentLecture: user.email,
+                              currentUser: snapshot.data,
+                              isDM: true,
+                              dmPath: FirebaseServices.user
+                                  .doc(user.email)
+                                  .collection("chats")
+                                  .doc(FirebaseServices.auth.currentUser!.email)
+                                  .collection("messages"),
+                              lmdPath: FirebaseServices.user
+                                  .doc(user.email)
+                                  .collection("chats")
+                                  .doc(
+                                      FirebaseServices.auth.currentUser!.email),
+                              lmPath: FirebaseServices.user
+                                  .doc(FirebaseServices.auth.currentUser!.email)
+                                  .collection("chats")
+                                  .doc(user.email),
+                            ),
+                          );
+                        },
+                        child: const Text("Mesaj Gönder"),
+                      ),
+                      const PopupMenuItem(
+                        child: Text("Şikayet Et"),
+                      ),
+                      const PopupMenuItem(
+                        child: Text("Kullanıcıyı Engelle"),
+                      ),
+                      const PopupMenuItem(
+                        child: Text("Bu Profili Paylaş"),
+                      ),
+                    ],
+                  );
+                },
+                icon: Icon(
+                  Icons.more_horiz,
+                  color: Colors.white,
+                  size: 35.sp,
+                ),
+              );
+            },
           ),
           SizedBox(
             width: 10.w,

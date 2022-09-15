@@ -1,4 +1,6 @@
+import 'package:event_app/core/services/firebase_services.dart';
 import 'package:event_app/feature/follow_requests/follow_requests_screen.dart';
+import 'package:event_app/feature/message_box/message_box_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -38,9 +40,25 @@ AppBar buildHomeAppBar(BuildContext context) {
         ),
       ),
       context.emptySizedWidthBoxLow3x,
-      IconButton(
-        onPressed: () {},
-        icon: Icon(Icons.chat_bubble_rounded, color: Colors.white, size: 25.sp),
+      FutureBuilder(
+        future: FirebaseServices().getCurrentUsername(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return IconButton(
+            onPressed: () {
+              if (ModalRoute.of(context)!.settings.name != "/messageBox") {
+                pushNewScreenWithRouteSettings(
+                  context,
+                  settings: const RouteSettings(name: "/messageBox"),
+                  screen: MessageBox(currentUserName: snapshot.data),
+                  withNavBar: true,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              }
+            },
+            icon: Icon(Icons.chat_bubble_rounded,
+                color: Colors.white, size: 25.sp),
+          );
+        },
       ),
       context.emptySizedWidthBoxLow3x,
     ],

@@ -1,6 +1,5 @@
 import 'package:event_app/core/components/centered_progress.dart';
 import 'package:event_app/core/services/firebase_services.dart';
-import 'package:event_app/feature/home/components/home_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -12,7 +11,6 @@ class FollowRequestsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: buildHomeAppBar(context),
       body: StreamBuilder(
         stream: FirebaseServices.user
             .doc(FirebaseServices.auth.currentUser!.email)
@@ -23,6 +21,17 @@ class FollowRequestsPage extends StatelessWidget {
             return CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
+                SliverToBoxAdapter(
+                  child: Container(
+                    margin: EdgeInsets.only(top: context.height * 0.06),
+                    padding: context.paddingNormal,
+                    child: Text(
+                      'Bildirimler',
+                      style: context.textTheme.headline4!
+                          .copyWith(color: Colors.white),
+                    ),
+                  ),
+                ),
                 SliverToBoxAdapter(
                   child: ListView.builder(
                     shrinkWrap: true,

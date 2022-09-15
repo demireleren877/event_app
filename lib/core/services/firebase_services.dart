@@ -115,4 +115,24 @@ class FirebaseServices {
         .where("takenTickets", arrayContains: id)
         .snapshots();
   }
+
+  getCurrentUsername() {
+    return user
+        .doc(FirebaseServices.auth.currentUser!.email)
+        .get()
+        .then((value) => value.data()!["name"]);
+  }
+
+  getUserData(String email) {
+    return user.doc(email).get().then((value) => value.data());
+  }
+
+  deleteDM(peerId) {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseServices.auth.currentUser!.email)
+        .collection('chats')
+        .doc(peerId)
+        .delete();
+  }
 }
