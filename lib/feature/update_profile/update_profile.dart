@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_app/feature/update_profile/viewmodel/update_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +29,13 @@ class UpdateProfile extends StatelessWidget {
                       ? CircleAvatar(
                           radius: context.height * 0.09,
                           backgroundColor: AppColors.transparent,
-                          backgroundImage:
-                              NetworkImage(_updateProfileVM.imageUrl!))
+                          backgroundImage: CachedNetworkImageProvider(
+                              _updateProfileVM.imageUrl!))
                       : CircleAvatar(
                           radius: context.height * 0.09,
                           backgroundColor: AppColors.transparent,
                           backgroundImage: user.profileImageUrl != ""
-                              ? NetworkImage(user.profileImageUrl)
+                              ? CachedNetworkImageProvider(user.profileImageUrl)
                               : const AssetImage("assets/image.png")
                                   as ImageProvider,
                         ),

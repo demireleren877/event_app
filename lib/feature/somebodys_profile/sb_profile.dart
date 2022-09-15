@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_app/feature/details/details_page.dart';
 import 'package:event_app/feature/profile/profile_screen.dart';
@@ -121,7 +122,7 @@ class SomeBodysProfile extends StatelessWidget {
                         backgroundImage: user.profileImageUrl == ""
                             ? const AssetImage("assets/image.png")
                                 as ImageProvider
-                            : NetworkImage(
+                            : CachedNetworkImageProvider(
                                 user.profileImageUrl,
                               ),
                       ),
@@ -295,7 +296,7 @@ class EventCardforProfileforSB extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: context.lowBorderRadius,
           image: DecorationImage(
-            image: NetworkImage(
+            image: CachedNetworkImageProvider(
               event.image ?? "",
             ),
             fit: BoxFit.cover,

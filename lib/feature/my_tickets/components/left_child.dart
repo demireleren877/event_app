@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -21,7 +22,7 @@ class LeftChild extends StatelessWidget {
               left: Radius.circular(context.width * 0.035),
             ),
             image: DecorationImage(
-              image: NetworkImage(
+              image: CachedNetworkImageProvider(
                 data["image"],
               ),
               fit: BoxFit.fill,

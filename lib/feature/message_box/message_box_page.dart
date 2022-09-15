@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_app/feature/chat_room/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -99,7 +100,7 @@ class MessageBox extends StatelessWidget {
                               },
                               leading: CircleAvatar(
                                 radius: context.width * 0.07,
-                                backgroundImage: NetworkImage(
+                                backgroundImage: CachedNetworkImageProvider(
                                   snapshot.data['profileImageUrl'],
                                 ),
                               ),

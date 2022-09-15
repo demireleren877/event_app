@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_app/core/services/firebase_services.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +27,8 @@ class SoldTickets extends StatelessWidget {
                       return Positioned(
                         left: index * context.height * 0.035,
                         child: CircleAvatar(
-                          backgroundColor: Colors.amber,
-                          backgroundImage:
-                              NetworkImage(docs[index]['profileImageUrl']),
+                          backgroundImage: CachedNetworkImageProvider(
+                              docs[index]['profileImageUrl']),
                           radius: context.height * 0.025,
                         ),
                       );

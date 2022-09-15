@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_app/core/services/firebase_services.dart';
 import 'package:event_app/feature/login/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class MenuPage extends StatelessWidget {
                         backgroundImage: output["profileImageUrl"] == null
                             ? const AssetImage("assets/image.png")
                                 as ImageProvider
-                            : NetworkImage(
+                            : CachedNetworkImageProvider(
                                 output["profileImageUrl"],
                               ),
                       ),

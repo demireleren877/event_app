@@ -67,7 +67,7 @@ class MessageCard extends StatelessWidget {
                       ? InkWell(
                           onTap: null,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15.r),
                             child: CachedNetworkImage(
                               imageUrl:
                                   snapshot.data.docs[index].data()["message"],

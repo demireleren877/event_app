@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_app/core/components/centered_progress.dart';
 import 'package:event_app/core/models/user_model.dart';
 import 'package:event_app/core/services/firebase_services.dart';
@@ -147,8 +148,9 @@ class SearchPage extends StatelessWidget {
                                                 );
                                               },
                                               leading: CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    doc["profileImageUrl"]),
+                                                backgroundImage:
+                                                    CachedNetworkImageProvider(
+                                                        doc["profileImageUrl"]),
                                               ),
                                               title: Text(doc["name"]),
                                               subtitle:

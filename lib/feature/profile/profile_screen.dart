@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_app/core/components/centered_progress.dart';
 import 'package:event_app/core/services/firebase_services.dart';
@@ -294,7 +295,7 @@ class EventCardforProfile extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: context.lowBorderRadius,
           image: DecorationImage(
-            image: NetworkImage(
+            image: CachedNetworkImageProvider(
               event.image ?? "",
             ),
             fit: BoxFit.cover,
@@ -342,7 +343,7 @@ class UserStreamBuilder extends StatelessWidget {
                     backgroundColor: AppColors.transparent,
                     backgroundImage: output["profileImageUrl"] == ""
                         ? const AssetImage("assets/image.png") as ImageProvider
-                        : NetworkImage(
+                        : CachedNetworkImageProvider(
                             output["profileImageUrl"],
                           ),
                   ),

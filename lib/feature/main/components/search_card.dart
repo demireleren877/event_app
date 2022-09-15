@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -26,7 +27,7 @@ class SearchCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: context.normalBorderRadius,
               image: DecorationImage(
-                image: NetworkImage(doc["image"]),
+                image: CachedNetworkImageProvider(doc["image"]),
                 fit: BoxFit.cover,
               ),
             ),

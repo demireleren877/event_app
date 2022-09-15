@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,8 +15,8 @@ class EventImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: context.lowBorderRadius,
-      child: Image.network(
-        docs
+      child: CachedNetworkImage(
+        imageUrl: docs
             .where((element) =>
                 element.data()['id'].toString() == eventList[index].description)
             .first
