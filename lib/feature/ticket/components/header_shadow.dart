@@ -9,7 +9,7 @@ class HeaderShadow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.height * 0.4,
+      height: context.height * 0.3,
       width: context.width,
       decoration: BoxDecoration(
         gradient: LinearGradient(

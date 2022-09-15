@@ -1,14 +1,16 @@
+import 'package:event_app/core/services/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import '../../../core/models/event_model.dart';
 
 class SellOutSection extends StatelessWidget {
-  const SellOutSection({
+  SellOutSection({
     Key? key,
     required this.arguments,
   }) : super(key: key);
 
   final Event arguments;
+  final FirebaseServices _firebaseServices = FirebaseServices();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,11 @@ class SellOutSection extends StatelessWidget {
                 Size(context.width * 0.5, context.height * 0.07),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              _firebaseServices.buyTicket(
+                arguments.id,
+              );
+            },
             child: Text(
               "Buy Ticket",
               style: context.textTheme.bodyText1?.copyWith(

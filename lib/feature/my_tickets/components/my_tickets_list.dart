@@ -34,7 +34,7 @@ class MyTicketList extends StatelessWidget {
                       index: index,
                     ),
                     rightChild: RightChild(
-                      data: docs[index],
+                      data: docs[index].data(),
                       index: index,
                     ),
                     colorBackground: Colors.grey.shade900,

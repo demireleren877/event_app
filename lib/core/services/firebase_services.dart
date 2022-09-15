@@ -135,4 +135,27 @@ class FirebaseServices {
         .doc(peerId)
         .delete();
   }
+
+  buyTicket(int eventId) {
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseServices.auth.currentUser!.email)
+        .update({
+      "takenTickets": FieldValue.arrayUnion([eventId])
+    });
+
+    FirebaseFirestore.instance
+        .collection("events")
+        .where("id", isEqualTo: eventId)
+        .get()
+        .then((value) {
+      FirebaseFirestore.instance
+          .collection("events")
+          .doc(value.docs[0].id)
+          .update({
+        "attendees":
+            FieldValue.arrayUnion([FirebaseServices.auth.currentUser!.email])
+      });
+    });
+  }
 }
