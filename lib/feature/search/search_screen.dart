@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../somebodys_profile/sb_profile.dart';
 
@@ -62,7 +62,7 @@ class SearchPage extends StatelessWidget {
                       },
                       child: Text(
                         "İptal",
-                        style: context.textTheme.bodyText2?.copyWith(
+                        style: context.textTheme.bodyMedium?.copyWith(
                           color: Colors.white,
                           fontSize: 15.sp,
                         ),
@@ -83,9 +83,9 @@ class SearchPage extends StatelessWidget {
                     ),
                   ),
                   unselectedLabelStyle:
-                      context.textTheme.headline6?.copyWith(fontSize: 18.sp),
+                      context.textTheme.titleLarge?.copyWith(fontSize: 18.sp),
                   labelStyle:
-                      context.textTheme.headline6?.copyWith(fontSize: 18.sp),
+                      context.textTheme.titleLarge?.copyWith(fontSize: 18.sp),
                   tabs: const [
                     Tab(
                       text: "Kişiler",
@@ -138,7 +138,8 @@ class SearchPage extends StatelessWidget {
                                                       .currentUser!.email) {
                                             return ListTile(
                                               onTap: () {
-                                                pushNewScreen(
+                                                PersistentNavBarNavigator
+                                                    .pushNewScreen(
                                                   context,
                                                   screen: SomeBodysProfile(
                                                     user: User.fromJson(

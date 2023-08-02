@@ -6,8 +6,7 @@ import 'package:event_app/feature/somebodys_profile/components/follow_business.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../core/colors/app_colors.dart';
 import '../../core/components/centered_progress.dart';
 import '../../core/models/event_model.dart';
@@ -42,7 +41,7 @@ class SomeBodysProfile extends StatelessWidget {
                     items: [
                       PopupMenuItem(
                         onTap: () {
-                          pushNewScreen(
+                          PersistentNavBarNavigator.pushNewScreen(
                             context,
                             withNavBar: false,
                             screen: ChatScreen(
@@ -139,7 +138,7 @@ class SomeBodysProfile extends StatelessWidget {
                           ),
                           context.emptySizedHeightBoxLow,
                           Text(
-                            "@" + user.userName,
+                            "@${user.userName}",
                             style: TextStyle(
                               color: Colors.white54,
                               fontSize: 18.sp,
@@ -180,7 +179,7 @@ class SomeBodysProfile extends StatelessWidget {
                             children: [
                               Text(
                                 "Son Etkinlikler",
-                                style: context.textTheme.bodyText2?.copyWith(
+                                style: context.textTheme.bodyMedium?.copyWith(
                                   color: Colors.white,
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.w300,
@@ -285,7 +284,8 @@ class EventCardforProfileforSB extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        pushNewScreen(context, screen: EventDetailsPage(event: event));
+        PersistentNavBarNavigator.pushNewScreen(context,
+            screen: EventDetailsPage(event: event));
       },
       child: Container(
         margin: EdgeInsets.only(right: 10.w),

@@ -1,7 +1,7 @@
 import 'package:event_app/feature/details/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../core/components/centered_progress.dart';
 import '../../../core/models/event_model.dart';
@@ -39,7 +39,7 @@ class SearchResult extends StatelessWidget {
                       .contains(mainVM.searchValue.toLowerCase())) {
                     return GestureDetector(
                       onTap: () {
-                        pushNewScreen(
+                        PersistentNavBarNavigator.pushNewScreen(
                           context,
                           screen: EventDetailsPage(
                             event: Event.fromJson(doc.data()),

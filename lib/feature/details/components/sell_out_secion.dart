@@ -48,8 +48,52 @@ class SellOutSection extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              _firebaseServices.buyTicket(
-                arguments.id,
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(
+                      "Satın Al",
+                      style: context.textTheme.headline6?.copyWith(
+                        color: Colors.pink.shade300,
+                      ),
+                    ),
+                    content: Text(
+                      "Satın almak istediğinize emin misiniz?",
+                      style: context.textTheme.bodyText1?.copyWith(
+                        color: Colors.pink.shade300,
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "Hayır",
+                          style: context.textTheme.bodyText1?.copyWith(
+                            color: Colors.pink.shade300,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          _firebaseServices.buyTicket(
+                            arguments.id,
+                            context,
+                          );
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "Evet",
+                          style: context.textTheme.bodyText1?.copyWith(
+                            color: Colors.pink.shade300,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               );
             },
             child: Text(

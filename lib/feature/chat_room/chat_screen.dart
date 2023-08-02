@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../core/colors/app_colors.dart';
 import '../../core/components/centered_progress.dart';
 import 'components/input_field.dart';
 import 'components/message_card.dart';
@@ -40,7 +39,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: AppColors.transparent,
+        backgroundColor: Colors.black,
         appBar: _buildAppBar(context),
         body: _buildBody(),
       ),

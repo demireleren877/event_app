@@ -3,7 +3,7 @@ import 'package:event_app/feature/chat_room/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../core/components/centered_progress.dart';
 import '../../core/services/firebase_services.dart';
@@ -36,7 +36,7 @@ class MessageBox extends StatelessWidget {
                         padding: context.horizontalPaddingMedium,
                         child: Text(
                           "Mesaj Kutusu",
-                          style: context.textTheme.headline4!
+                          style: context.textTheme.headlineMedium!
                               .copyWith(color: Colors.white),
                         ),
                       ),
@@ -58,7 +58,7 @@ class MessageBox extends StatelessWidget {
                           if (snapshot.hasData) {
                             return ListTile(
                               onTap: () {
-                                pushNewScreen(
+                                PersistentNavBarNavigator.pushNewScreen(
                                   context,
                                   withNavBar: false,
                                   screen: ChatScreen(
@@ -108,7 +108,7 @@ class MessageBox extends StatelessWidget {
                                 padding: context.verticalPaddingLow,
                                 child: Text(
                                   snapshot.data['name'],
-                                  style: context.textTheme.headline6!
+                                  style: context.textTheme.titleLarge!
                                       .copyWith(color: Colors.white),
                                 ),
                               ),
@@ -143,7 +143,7 @@ class MessageBox extends StatelessWidget {
                                     child: Text(
                                       data['lastMessage'],
                                       overflow: TextOverflow.ellipsis,
-                                      style: context.textTheme.subtitle2!
+                                      style: context.textTheme.titleSmall!
                                           .copyWith(color: Colors.white70),
                                     ),
                                   ),
@@ -167,7 +167,53 @@ class MessageBox extends StatelessWidget {
                                 child: IconButton(
                                   splashRadius: 1,
                                   onPressed: () {
-                                    _firebaseServices.deleteDM(data.id);
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          backgroundColor: Colors.black,
+                                          title: Text(
+                                            "Mesajı Sil",
+                                            style: context.textTheme.titleLarge!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          content: Text(
+                                            "Mesajı silmek istediğinize emin misiniz?",
+                                            style: context.textTheme.titleSmall!
+                                                .copyWith(
+                                                    color: Colors.white70),
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                "İptal",
+                                                style: context
+                                                    .textTheme.titleSmall!
+                                                    .copyWith(
+                                                        color: Colors.white70),
+                                              ),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                _firebaseServices
+                                                    .deleteDM(data.id);
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                "Sil",
+                                                style: context
+                                                    .textTheme.titleSmall!
+                                                    .copyWith(
+                                                        color: Colors.red),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   },
                                   icon: Icon(
                                     Icons.delete_outline,

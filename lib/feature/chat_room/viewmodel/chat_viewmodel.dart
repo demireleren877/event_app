@@ -63,7 +63,7 @@ abstract class _ChatVMBase with Store {
         .doc(peerId)
         .get();
 
-    if (query2["senderId"] == peerId) {
+    if (query2.exists && query2["senderId"] == peerId) {
       query2.reference.update({"read": true});
     }
 

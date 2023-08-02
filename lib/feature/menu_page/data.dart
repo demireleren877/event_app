@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/routes/route_constants.dart';
-
 class MenuData {
   static List<Map<String, dynamic>> menuItems = [
     {
@@ -10,7 +8,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Profilim",
-      "route": Routes.home,
+      "function": () {},
     },
     {
       "icon": const Icon(
@@ -18,7 +16,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Abonelikler",
-      "route": Routes.search,
+      "function": () {},
     },
     {
       "icon": const Icon(
@@ -26,7 +24,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Ödeme Yöntemleri",
-      "route": Routes.profile,
+      "function": () {},
     },
     {
       "icon": const ImageIcon(
@@ -34,7 +32,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Fatura Bilgilerim",
-      "route": Routes.init,
+      "function": () {},
     },
     {
       "icon": const Icon(
@@ -42,7 +40,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Yorumlarım",
-      "route": Routes.init,
+      "function": () {},
     },
     {
       "icon": const Icon(
@@ -50,7 +48,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Bildirim Ayarları",
-      "route": Routes.init,
+      "function": () {},
     },
     {
       "icon": const Icon(
@@ -58,7 +56,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Gizlilik Politikası",
-      "route": Routes.init,
+      "function": () {},
     },
     {
       "icon": const Icon(
@@ -66,7 +64,9 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Şartlar ve Koşullar",
-      "route": Routes.init,
+      "function": (context) {
+        Navigator.pop(context);
+      },
     },
     {
       "icon": const ImageIcon(
@@ -74,7 +74,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "KVKK Aydınlatma Metni",
-      "route": Routes.init,
+      "function": () {},
     },
     {
       "icon": const Icon(
@@ -82,7 +82,7 @@ class MenuData {
         color: Colors.white,
       ),
       "title": "Oturumu Kapat",
-      "route": Routes.init,
+      "function": () {},
     },
   ];
 }

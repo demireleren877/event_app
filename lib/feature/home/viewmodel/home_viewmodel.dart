@@ -2,7 +2,7 @@ import 'package:event_app/feature/profile/profile_screen.dart';
 import 'package:event_app/feature/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../calendar/calendar_page.dart';
 import '../../main/main_page.dart';

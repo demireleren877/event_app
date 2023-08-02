@@ -30,7 +30,12 @@ class MyTickets extends StatelessWidget {
                     child: TabBarView(
                       children: [
                         MyTicketList(snapshot: snapshot),
-                        MyTicketList(snapshot: snapshot),
+                        Center(
+                          child: Text(
+                            "Yakında",
+                            style: context.textTheme.headline6,
+                          ),
+                        ),
                       ],
                     ),
                   );

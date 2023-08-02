@@ -12,7 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import '../../core/colors/app_colors.dart';
 import '../../core/models/event_model.dart';
 import '../../core/models/user_model.dart';
@@ -33,7 +33,7 @@ class ProfilePage extends StatelessWidget {
           context.emptySizedHeightBoxLow3x,
           Text(
             "Son Etkinlikler",
-            style: context.textTheme.bodyText2?.copyWith(
+            style: context.textTheme.bodyMedium?.copyWith(
               color: Colors.white,
               fontSize: 20.sp,
               fontWeight: FontWeight.w300,
@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
           context.emptySizedHeightBoxNormal,
           Text(
             "Favoriler",
-            style: context.textTheme.bodyText2?.copyWith(
+            style: context.textTheme.bodyMedium?.copyWith(
               color: Colors.white,
               fontSize: 20.sp,
               fontWeight: FontWeight.w300,
@@ -148,7 +148,7 @@ class ProfilePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              pushNewScreen(
+              PersistentNavBarNavigator.pushNewScreen(
                 context,
                 screen: const MenuPage(),
               );
@@ -191,7 +191,7 @@ class DateboxForProfile extends StatelessWidget {
           children: [
             Text(
               DateFormat("MMM").format(date).toUpperCase(),
-              style: context.textTheme.bodyText1?.copyWith(
+              style: context.textTheme.bodyLarge?.copyWith(
                 color: Colors.black54,
                 fontWeight: FontWeight.w400,
                 fontSize: 10.sp,
@@ -199,7 +199,7 @@ class DateboxForProfile extends StatelessWidget {
             ),
             Text(
               DateFormat("dd").format(date),
-              style: context.textTheme.headline6?.copyWith(
+              style: context.textTheme.titleLarge?.copyWith(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 11.sp,
@@ -280,7 +280,7 @@ class EventCardforProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        pushNewScreen(
+        PersistentNavBarNavigator.pushNewScreen(
           context,
           screen: EventDetailsPage(event: event),
         );
@@ -423,7 +423,7 @@ class UserStreamBuilder extends StatelessWidget {
                 textColor: Colors.white,
                 text: "Profili Düzenle",
                 onPressed: () {
-                  pushNewScreen(
+                  PersistentNavBarNavigator.pushNewScreen(
                     context,
                     screen: UpdateProfile(user: User.fromJson(output.data())),
                     withNavBar: true,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseServices {
   final firestore = FirebaseFirestore.instance;
@@ -128,15 +129,21 @@ class FirebaseServices {
   }
 
   deleteDM(peerId) {
-    FirebaseFirestore.instance
-        .collection('users')
+    user.doc(auth.currentUser!.email).collection("chats").doc(peerId).delete();
+    user
         .doc(FirebaseServices.auth.currentUser!.email)
         .collection('chats')
         .doc(peerId)
-        .delete();
+        .collection("messages")
+        .get()
+        .then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
   }
 
-  buyTicket(int eventId) {
+  buyTicket(int eventId, context) {
     FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseServices.auth.currentUser!.email)
@@ -156,6 +163,9 @@ class FirebaseServices {
         "attendees":
             FieldValue.arrayUnion([FirebaseServices.auth.currentUser!.email])
       });
-    });
+    }).then((value) => ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text("Ticket bought successfully"),
+                backgroundColor: Colors.green)));
   }
 }

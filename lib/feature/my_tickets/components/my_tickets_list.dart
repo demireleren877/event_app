@@ -19,6 +19,7 @@ class MyTicketList extends StatelessWidget {
     return docs.length == 0
         ? const NoDataIcon()
         : ListView.builder(
+            key: const PageStorageKey("myTicketList"),
             padding: context.paddingNormal,
             physics: const BouncingScrollPhysics(),
             itemCount: docs.length,
@@ -39,6 +40,7 @@ class MyTicketList extends StatelessWidget {
                     ),
                     colorBackground: Colors.grey.shade900,
                   ),
+                  context.emptySizedHeightBoxLow3x,
                   context.emptySizedHeightBoxLow3x
                 ],
               );

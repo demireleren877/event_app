@@ -1,6 +1,6 @@
 import 'package:event_app/feature/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -8,14 +8,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PersistentTabController _controller = PersistentTabController(
+    PersistentTabController controller = PersistentTabController(
       initialIndex: 0,
     );
     return Scaffold(
       backgroundColor: Colors.black,
       body: PersistentTabView(
         context,
-        controller: _controller,
+        controller: controller,
         screens: _homeVM.pages,
         items: _homeVM.items,
         confineInSafeArea: true,

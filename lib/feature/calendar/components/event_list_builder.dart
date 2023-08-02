@@ -3,7 +3,7 @@ import 'package:event_app/feature/details/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../core/utilities/scroll_behavior.dart';
 import 'event_detail_column.dart';
@@ -28,7 +28,7 @@ class EventListWidget extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    pushNewScreen(
+                    PersistentNavBarNavigator.pushNewScreen(
                       context,
                       screen: EventDetailsPage(
                         event: Event.fromJson(docs

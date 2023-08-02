@@ -3,7 +3,7 @@ import 'package:event_app/core/services/firebase_services.dart';
 import 'package:event_app/feature/ticket/ticket_page.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../chat_room/chat_screen.dart';
 
@@ -25,7 +25,7 @@ class RightChild extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                pushNewScreen(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
                   screen: ChatScreen(
                     currentUser: snapshot.data['name'],
@@ -46,7 +46,7 @@ class RightChild extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                pushNewScreen(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
                   screen: TicketPage(
                     event: Event.fromJson(data),
