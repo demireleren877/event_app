@@ -27,85 +27,9 @@ class FollowRequestsPage extends StatelessWidget {
                     padding: context.paddingNormal,
                     child: Text(
                       'Bildirimler',
-                      style: context.textTheme.headline4!
+                      style: context.textTheme.headlineMedium!
                           .copyWith(color: Colors.white),
                     ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    padding: context.horizontalPaddingNormal,
-                    itemCount: docs["followers"].length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return FutureBuilder(
-                        future: _firebaseServices
-                            .getFollowRequestsNames(docs["followers"][index]),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          return Container(
-                            margin: context.verticalPaddingLow,
-                            padding: context.horizontalPaddingNormal,
-                            height: context.dynamicHeight(0.1),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: context.dynamicWidth(0.48),
-                                  child: Text.rich(
-                                    TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: snapshot.data.toString(),
-                                          style: context.textTheme.headline6!
-                                              .copyWith(color: Colors.white),
-                                        ),
-                                        TextSpan(
-                                          text: " sizi takip etmeye başladı",
-                                          style: context.textTheme.bodyText2
-                                              ?.copyWith(
-                                            color: Colors.white70,
-                                            fontSize:
-                                                context.dynamicWidth(0.05),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                    fixedSize: MaterialStateProperty.all(
-                                      Size(context.width * 0.32,
-                                          context.height * .03),
-                                    ),
-                                    backgroundColor: MaterialStateProperty.all(
-                                      const Color(0xFFACA0DF),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    "GT",
-                                    style:
-                                        context.textTheme.bodyText2?.copyWith(
-                                      color: Colors.white,
-                                      fontSize: context.dynamicWidth(0.05),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: const Color(0xFF7860E1),
-                                width: 1,
-                              ),
-                              borderRadius: context.normalBorderRadius,
-                            ),
-                          );
-                        },
-                      );
-                    },
                   ),
                 ),
                 SliverToBoxAdapter(
@@ -123,6 +47,13 @@ class FollowRequestsPage extends StatelessWidget {
                             margin: context.verticalPaddingLow,
                             padding: context.horizontalPaddingNormal,
                             height: context.dynamicHeight(0.1),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: const Color(0xFF7860E1),
+                                width: 1,
+                              ),
+                              borderRadius: context.normalBorderRadius,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -133,12 +64,12 @@ class FollowRequestsPage extends StatelessWidget {
                                       children: [
                                         TextSpan(
                                           text: snapshot.data.toString(),
-                                          style: context.textTheme.headline6!
+                                          style: context.textTheme.titleLarge!
                                               .copyWith(color: Colors.white),
                                         ),
                                         TextSpan(
                                           text: " size takip isteği gönderdi.",
-                                          style: context.textTheme.bodyText2
+                                          style: context.textTheme.bodyMedium
                                               ?.copyWith(
                                             color: Colors.white70,
                                             fontSize:
@@ -166,7 +97,7 @@ class FollowRequestsPage extends StatelessWidget {
                                   child: Text(
                                     "Kabul Et",
                                     style:
-                                        context.textTheme.bodyText2?.copyWith(
+                                        context.textTheme.bodyMedium?.copyWith(
                                       color: Colors.white,
                                       fontSize: context.dynamicWidth(0.05),
                                     ),
@@ -174,6 +105,28 @@ class FollowRequestsPage extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    padding: context.horizontalPaddingNormal,
+                    itemCount: docs["followers"].length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var followerList = docs["followers"].reversed.toList();
+                      return FutureBuilder(
+                        future: _firebaseServices
+                            .getFollowRequestsNames(followerList[index]),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          return Container(
+                            margin: context.verticalPaddingLow,
+                            padding: context.horizontalPaddingNormal,
+                            height: context.dynamicHeight(0.1),
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: const Color(0xFF7860E1),
@@ -181,12 +134,94 @@ class FollowRequestsPage extends StatelessWidget {
                               ),
                               borderRadius: context.normalBorderRadius,
                             ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: context.dynamicWidth(0.48),
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: snapshot.data.toString(),
+                                          style: context.textTheme.titleLarge!
+                                              .copyWith(color: Colors.white),
+                                        ),
+                                        TextSpan(
+                                          text: " sizi takip etmeye başladı",
+                                          style: context.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            color: Colors.white70,
+                                            fontSize:
+                                                context.dynamicWidth(0.05),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                StreamBuilder(
+                                    stream: FirebaseServices.user
+                                        .doc(followerList[index].toString())
+                                        .snapshots(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot snapshot2) {
+                                      if (snapshot2.hasData) {
+                                        final docs2 = snapshot2.data;
+                                        return TextButton(
+                                          onPressed: () {
+                                            docs["following"].contains(
+                                                    followerList[index]
+                                                        .toString())
+                                                ? _firebaseServices
+                                                    .unfollowUser(
+                                                        followerList[index]
+                                                            .toString())
+                                                : _firebaseServices
+                                                    .sendFollowRequest(
+                                                        followerList[index]
+                                                            .toString());
+                                          },
+                                          style: ButtonStyle(
+                                            fixedSize:
+                                                MaterialStateProperty.all(
+                                              Size(context.width * 0.32,
+                                                  context.height * .03),
+                                            ),
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                              const Color(0xFFACA0DF),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            docs2["followRequests"].contains(
+                                                    FirebaseServices.auth
+                                                        .currentUser!.email)
+                                                ? "Beklemede"
+                                                : docs2["followers"].contains(
+                                                        FirebaseServices.auth
+                                                            .currentUser!.email)
+                                                    ? "Takipten Çık"
+                                                    : "Takip Et",
+                                            style: context.textTheme.bodySmall
+                                                ?.copyWith(
+                                              color: Colors.white,
+                                              fontSize:
+                                                  context.dynamicWidth(0.05),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      return const SizedBox.shrink();
+                                    }),
+                              ],
+                            ),
                           );
                         },
                       );
                     },
                   ),
-                ),
+                )
               ],
             );
           }

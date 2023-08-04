@@ -18,8 +18,8 @@ class SellOutSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text(
-          "₺ " + arguments.price.toString(),
-          style: context.textTheme.bodyText1?.copyWith(
+          "₺ ${arguments.price}",
+          style: context.textTheme.bodyLarge?.copyWith(
             color: Colors.pink.shade300,
             fontSize: context.height * 0.03,
           ),
@@ -54,13 +54,13 @@ class SellOutSection extends StatelessWidget {
                   return AlertDialog(
                     title: Text(
                       "Satın Al",
-                      style: context.textTheme.headline6?.copyWith(
+                      style: context.textTheme.titleLarge?.copyWith(
                         color: Colors.pink.shade300,
                       ),
                     ),
                     content: Text(
                       "Satın almak istediğinize emin misiniz?",
-                      style: context.textTheme.bodyText1?.copyWith(
+                      style: context.textTheme.bodyLarge?.copyWith(
                         color: Colors.pink.shade300,
                       ),
                     ),
@@ -71,22 +71,19 @@ class SellOutSection extends StatelessWidget {
                         },
                         child: Text(
                           "Hayır",
-                          style: context.textTheme.bodyText1?.copyWith(
+                          style: context.textTheme.bodyLarge?.copyWith(
                             color: Colors.pink.shade300,
                           ),
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                          _firebaseServices.buyTicket(
-                            arguments.id,
-                            context,
-                          );
+                          _firebaseServices.buyTicket(arguments.id);
                           Navigator.pop(context);
                         },
                         child: Text(
                           "Evet",
-                          style: context.textTheme.bodyText1?.copyWith(
+                          style: context.textTheme.bodyLarge?.copyWith(
                             color: Colors.pink.shade300,
                           ),
                         ),
@@ -98,7 +95,7 @@ class SellOutSection extends StatelessWidget {
             },
             child: Text(
               "Buy Ticket",
-              style: context.textTheme.bodyText1?.copyWith(
+              style: context.textTheme.bodyLarge?.copyWith(
                 color: Colors.white,
                 fontSize: context.height * 0.025,
               ),

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class FirebaseServices {
   final firestore = FirebaseFirestore.instance;
@@ -143,7 +142,7 @@ class FirebaseServices {
     });
   }
 
-  buyTicket(int eventId, context) {
+  buyTicket(int eventId) {
     FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseServices.auth.currentUser!.email)
@@ -163,9 +162,10 @@ class FirebaseServices {
         "attendees":
             FieldValue.arrayUnion([FirebaseServices.auth.currentUser!.email])
       });
-    }).then((value) => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text("Ticket bought successfully"),
-                backgroundColor: Colors.green)));
+    });
+    // then((value) => ScaffoldMessenger.of(context).showSnackBar(
+    //         const SnackBar(
+    //             content: Text("Ticket bought successfully"),
+    //             backgroundColor: Colors.green)));
   }
 }

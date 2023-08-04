@@ -180,8 +180,8 @@ class DateboxForProfile extends StatelessWidget {
       right: context.width / 25,
       top: context.height * .01,
       child: Container(
-        width: 40.w,
-        height: 40.w,
+        width: 42.w,
+        height: 42.w,
         padding: context.paddingLow,
         decoration: BoxDecoration(
           color: Colors.white70,

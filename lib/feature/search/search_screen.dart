@@ -138,6 +138,7 @@ class SearchPage extends StatelessWidget {
                                                       .currentUser!.email) {
                                             return ListTile(
                                               onTap: () {
+                                                print(doc["email"]);
                                                 PersistentNavBarNavigator
                                                     .pushNewScreen(
                                                   context,
@@ -149,9 +150,15 @@ class SearchPage extends StatelessWidget {
                                                 );
                                               },
                                               leading: CircleAvatar(
-                                                backgroundImage:
-                                                    CachedNetworkImageProvider(
-                                                        doc["profileImageUrl"]),
+                                                backgroundImage: doc[
+                                                            "profileImageUrl"] ==
+                                                        ""
+                                                    ? const AssetImage(
+                                                            "assets/image.png")
+                                                        as ImageProvider
+                                                    : CachedNetworkImageProvider(
+                                                        doc["profileImageUrl"],
+                                                      ),
                                               ),
                                               title: Text(doc["name"]),
                                               subtitle:
