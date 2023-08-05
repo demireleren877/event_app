@@ -207,7 +207,7 @@ class FollowRequestsPage extends StatelessWidget {
                                                 ?.copyWith(
                                               color: Colors.white,
                                               fontSize:
-                                                  context.dynamicWidth(0.05),
+                                                  context.dynamicWidth(0.04),
                                             ),
                                           ),
                                         );

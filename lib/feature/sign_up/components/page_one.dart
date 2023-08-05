@@ -46,6 +46,7 @@ class PageOne extends StatelessWidget {
             text: "Devam Et",
             onPressed: () {
               if (_signUpViewmodel.userName != "") {
+                print(_signUpViewmodel.name);
                 _signUpViewmodel.pageController.nextPage(
                   duration: context.durationLow,
                   curve: Curves.easeIn,

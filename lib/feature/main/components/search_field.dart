@@ -27,6 +27,7 @@ class SearchField extends StatelessWidget {
               suffixIcon: IconButton(
                 icon: const Icon(Icons.search),
                 iconSize: 30.sp,
+                splashRadius: 5.r,
                 color: Colors.white54,
                 onPressed: () {},
               ),

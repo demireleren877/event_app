@@ -35,7 +35,7 @@ class MenuPage extends StatelessWidget {
                       CircleAvatar(
                         radius: 50.r,
                         backgroundColor: AppColors.transparent,
-                        backgroundImage: output["profileImageUrl"] == null
+                        backgroundImage: output["profileImageUrl"] == ""
                             ? const AssetImage("assets/image.png")
                                 as ImageProvider
                             : CachedNetworkImageProvider(

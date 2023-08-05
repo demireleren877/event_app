@@ -12,6 +12,7 @@ class GoBackButton extends StatelessWidget {
       radius: context.height * 0.03,
       backgroundColor: Colors.white24,
       child: IconButton(
+        padding: EdgeInsets.zero,
         color: Colors.white,
         icon: const Icon(
           Icons.arrow_back,

@@ -36,7 +36,8 @@ abstract class _LoginVMBase with Store {
 
   @action
   Future authentication(context, formKey) async {
-    if (formKey.currentState.validate()) {
+    if (true) //formKey.currentState.validate() || true) 
+    {
       try {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);

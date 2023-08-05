@@ -49,7 +49,10 @@ abstract class _SignUpVMBase with Store {
   void changePassword(String value) => password = value;
 
   @action
-  void changeName(String value) => name = value;
+  void changeName(String value) {
+    print(value);
+     name = value;
+     }
 
   @action
   void next() {
@@ -68,7 +71,7 @@ abstract class _SignUpVMBase with Store {
           gravity: ToastGravity.CENTER,
           textColor: AppColors.red);
     }
-    await FirebaseServices.user.doc(email).set({
+    await FirebaseServices.user.doc("TEST").set({
       "name": name,
       "userName": userName,
       "phoneNumber": "",

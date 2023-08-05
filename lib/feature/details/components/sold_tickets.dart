@@ -27,8 +27,11 @@ class SoldTickets extends StatelessWidget {
                       return Positioned(
                         left: index * context.height * 0.035,
                         child: CircleAvatar(
-                          backgroundImage: CachedNetworkImageProvider(
-                              docs[index]['profileImageUrl']),
+                          backgroundImage:  
+                          docs[index]["profileImageUrl"] == ""
+                        ? const AssetImage("assets/image.png") as ImageProvider
+                        : CachedNetworkImageProvider(
+                            docs[index]["profileImageUrl"]),
                           radius: context.height * 0.025,
                         ),
                       );

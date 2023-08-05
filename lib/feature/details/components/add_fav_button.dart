@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kartal/kartal.dart';
 
@@ -21,17 +22,18 @@ class AddFavButton extends StatelessWidget {
     return Container(
       padding: context.paddingNormal,
       child: CircleAvatar(
-        radius: context.height * 0.03,
+        radius: context.height * 0.032,
         backgroundColor: Colors.white24,
         child: ValueListenableBuilder(
           valueListenable: Hive.box("events").listenable(),
           builder: (context, Box box, _) => IconButton(
+            padding: EdgeInsets.zero,
             color: _cacheManager.isExist(arguments.id, "events")
                 ? Colors.red
                 : Colors.white,
-            icon: const Icon(
+            icon:  Icon(
               Icons.favorite,
-              size: 30,
+              size: 30.sp,
             ),
             onPressed: () {
               _cacheManager.isExist(arguments.id, "events")

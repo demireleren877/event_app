@@ -100,9 +100,11 @@ class MessageBox extends StatelessWidget {
                               },
                               leading: CircleAvatar(
                                 radius: context.width * 0.07,
-                                backgroundImage: CachedNetworkImageProvider(
-                                  snapshot.data['profileImageUrl'],
-                                ),
+                                backgroundImage: snapshot.data["profileImageUrl"] == ""
+                        ? const AssetImage("assets/image.png") as ImageProvider
+                        : CachedNetworkImageProvider(
+                            snapshot.data["profileImageUrl"]),
+                                
                               ),
                               title: Padding(
                                 padding: context.verticalPaddingLow,

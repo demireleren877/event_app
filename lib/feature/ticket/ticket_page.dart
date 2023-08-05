@@ -80,10 +80,14 @@ class TicketPage extends StatelessWidget {
                             ),
                           ),
                           context.emptySizedHeightBoxLow,
-                          Text(
-                            username,
-                            style: context.textTheme.headline6!.copyWith(
-                              color: Colors.white,
+                          SizedBox(
+                            width: context.width * 0.3,
+                            child: Text(
+                              username,
+                              overflow: TextOverflow.ellipsis,
+                              style: context.textTheme.headline6!.copyWith(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           context.emptySizedHeightBoxLow3x,

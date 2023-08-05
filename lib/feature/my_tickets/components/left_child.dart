@@ -40,6 +40,7 @@ class LeftChild extends StatelessWidget {
         Center(
           child: Text(
             data["title"],
+            textAlign: TextAlign.center,
             style: context.textTheme.headline5,
           ),
         ),

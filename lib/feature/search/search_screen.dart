@@ -59,6 +59,7 @@ class SearchPage extends StatelessWidget {
                       onPressed: () {
                         _searchController.clear();
                         _searchVM.changeSearchValue("");
+                        FocusManager.instance.primaryFocus?.unfocus();
                       },
                       child: Text(
                         "İptal",

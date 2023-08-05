@@ -10,10 +10,10 @@ import '../../follow_requests/follow_requests_screen.dart';
 
 AppBar buildHomeAppBar(BuildContext context) {
   return AppBar(
-    leadingWidth: context.width * 0.5,
+    leadingWidth: context.width * 0.4,
     leading: Center(
       child: Text(
-        DateFormat("    dd MMM yyyy").format(DateTime.now()),
+        DateFormat("dd MMM yyyy").format(DateTime.now()),
         style: TextStyle(
           color: Colors.white54,
           fontSize: 18.sp,

@@ -20,6 +20,7 @@ class SearchCard extends StatelessWidget {
         borderRadius: context.normalBorderRadius,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             width: context.width * 0.3,
@@ -36,7 +37,7 @@ class SearchCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              Container(
                 width: context.width * 0.5,
                 child: Text(
                   doc["title"],
@@ -56,7 +57,7 @@ class SearchCard extends StatelessWidget {
                     size: 30,
                   ),
                   SizedBox(
-                    width: context.width / 2,
+                    width: context.width / 2.2,
                     child: Text(
                       doc["location"],
                       style: context.textTheme.subtitle1?.copyWith(
