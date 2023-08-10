@@ -21,3 +21,6 @@ samples, guidance on mobile development, and a full API reference.
 3- Local notif dahil edilicek.
 4- Grup chatte ardarda aynı kişiden gelen mesajda ilk mesajın titleı isim olmalı.
 5- Signup Username must be different.
+6- Mesaj kutusu overflow.
+7- Takvim view.
+8- Big bug null exception.

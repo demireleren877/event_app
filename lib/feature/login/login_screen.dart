@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           Form(
-            key: _formKey,
+            //key: _formKey,
             child: Padding(
               padding: context.paddingMedium,
               child: ScrollConfiguration(
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                     Center(
                       child: Text(
                         "Partyle",
-                        style: context.textTheme.headline2?.copyWith(
+                        style: context.textTheme.displayMedium?.copyWith(
                           color: Colors.white,
                           letterSpacing: 3,
                           fontWeight: FontWeight.w700,

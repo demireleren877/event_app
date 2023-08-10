@@ -7,23 +7,22 @@ import '../viewmodel/sign_up_viewmodel.dart';
 class AddLater extends StatelessWidget {
   const AddLater({
     Key? key,
-    required SignUpVM signUpViewmodel,
-  })  : _signUpViewmodel = signUpViewmodel,
-        super(key: key);
+    required this.signUpViewmodel,
+  }) : super(key: key);
 
-  final SignUpVM _signUpViewmodel;
+  final SignUpVM signUpViewmodel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _signUpViewmodel
+        signUpViewmodel
             .createAccount(context)
             .then((value) => Navigator.pushNamed(context, Routes.home));
       },
       child: Text(
         "Daha Sonra",
-        style: context.textTheme.bodyText1?.copyWith(
+        style: context.textTheme.bodyLarge?.copyWith(
           fontSize: context.dynamicWidth(0.04),
           decoration: TextDecoration.underline,
           decorationThickness: 1.5,

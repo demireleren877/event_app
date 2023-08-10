@@ -50,9 +50,8 @@ abstract class _SignUpVMBase with Store {
 
   @action
   void changeName(String value) {
-    print(value);
-     name = value;
-     }
+    name = value;
+  }
 
   @action
   void next() {
@@ -71,11 +70,12 @@ abstract class _SignUpVMBase with Store {
           gravity: ToastGravity.CENTER,
           textColor: AppColors.red);
     }
-    await FirebaseServices.user.doc("TEST").set({
+    await FirebaseServices.user.doc(email).set({
       "name": name,
       "userName": userName,
       "phoneNumber": "",
       "takenTickets": [],
+      "followRequests": [],
       "followers": [],
       "following": [],
       "birthDate": DateTime.now(),
@@ -88,8 +88,8 @@ abstract class _SignUpVMBase with Store {
 
   @action
   setProfileImage() async {
-    ImagePicker _picker = ImagePicker();
-    await _picker.pickImage(source: ImageSource.camera).then((xFile) => {
+    ImagePicker picker = ImagePicker();
+    await picker.pickImage(source: ImageSource.camera).then((xFile) => {
           if (xFile != null)
             {
               imageFile = File(xFile.path),

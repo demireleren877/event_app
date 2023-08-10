@@ -11,48 +11,49 @@ import 'profile_image.dart';
 class PageFour extends StatelessWidget {
   const PageFour({
     Key? key,
-    required SignUpVM signUpViewmodel,
-  })  : _signUpViewmodel = signUpViewmodel,
-        super(key: key);
+    required this.signUpViewmodel,
+  }) : super(key: key);
 
-  final SignUpVM _signUpViewmodel;
+  final SignUpVM signUpViewmodel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Profil fotoğrafı ekle",
-            style: context.textTheme.headline4,
-          ),
-          context.emptySizedHeightBoxNormal,
-          ProfileImage(signUpViewmodel: _signUpViewmodel),
-          context.emptySizedHeightBoxNormal,
-          Observer(
-            builder: (_) {
-              return SignUpButton(
-                buttonColor: const Color(0xFFACA0DF),
-                textColor: Colors.black,
-                text: _signUpViewmodel.imageFile == null
-                    ? "Bir Fotoğraf Ekle"
-                    : "Kaydını Tamamla",
-                onPressed: () {
-                  _signUpViewmodel.imageFile == null
-                      ? _signUpViewmodel.setProfileImage()
-                      : _signUpViewmodel.createAccount(context).then(
-                            (value) =>
-                                Navigator.pushNamed(context, Routes.home),
-                          );
-                },
-              );
-            },
-          ),
-          context.emptySizedHeightBoxLow3x,
-          AddLater(signUpViewmodel: _signUpViewmodel),
-        ],
+    return Scaffold(
+      body: Container(
+        color: Colors.black,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Profil fotoğrafı ekle",
+              style: context.textTheme.headlineMedium,
+            ),
+            context.emptySizedHeightBoxNormal,
+            ProfileImage(signUpViewmodel: signUpViewmodel),
+            context.emptySizedHeightBoxNormal,
+            Observer(
+              builder: (_) {
+                return SignUpButton(
+                  buttonColor: const Color(0xFFACA0DF),
+                  textColor: Colors.black,
+                  text: signUpViewmodel.imageFile == null
+                      ? "Bir Fotoğraf Ekle"
+                      : "Kaydını Tamamla",
+                  onPressed: () {
+                    signUpViewmodel.imageFile == null
+                        ? signUpViewmodel.setProfileImage()
+                        : signUpViewmodel.createAccount(context).then(
+                              (value) =>
+                                  Navigator.pushNamed(context, Routes.home),
+                            );
+                  },
+                );
+              },
+            ),
+            context.emptySizedHeightBoxLow3x,
+            AddLater(signUpViewmodel: signUpViewmodel),
+          ],
+        ),
       ),
     );
   }
