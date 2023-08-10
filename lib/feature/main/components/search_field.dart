@@ -1,3 +1,4 @@
+import 'package:event_app/feature/map/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
@@ -43,7 +44,14 @@ class SearchField extends StatelessWidget {
         ),
         context.emptySizedWidthBoxLow3x,
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const MapScreen(),
+              ),
+            );
+          },
           icon: const Icon(Icons.location_on_outlined),
           iconSize: context.height * 0.05,
           color: Colors.pink.shade600,
