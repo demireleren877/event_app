@@ -35,8 +35,8 @@ abstract class _LoginVMBase with Store {
   }
 
   @action
-  Future authentication(context, formKey) async {
-    if (true) //formKey.currentState.validate() || true) 
+  Future authentication(context) async {
+    if (true) //formKey.currentState.validate() || true)
     {
       try {
         await FirebaseAuth.instance

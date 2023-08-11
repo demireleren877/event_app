@@ -30,7 +30,6 @@ class HomePage extends StatelessWidget {
         selectedTabScreenContext: (context) {
           context = context;
         },
-
         popAllScreensOnTapOfSelectedTab: true,
 
         itemAnimationProperties: const ItemAnimationProperties(
@@ -48,12 +47,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-
-// PageView(
-//         physics: const NeverScrollableScrollPhysics(),
-//         controller: _homeVM.pageController,
-//         children: _homeVM.pages,
-//       ),

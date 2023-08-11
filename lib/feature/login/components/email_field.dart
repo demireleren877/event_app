@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '/feature/login/viewmodel/login_viewmodel.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import '../login_constants.dart';
+import '/feature/login/viewmodel/login_viewmodel.dart';
 
 class EmailField extends StatelessWidget {
   const EmailField({
@@ -16,23 +18,29 @@ class EmailField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: (value) => _loginVM.onEmailChange(value),
-      controller: _emailController,
-      autofillHints: const [AutofillHints.email],
-      keyboardType: TextInputType.emailAddress,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration: InputDecoration(
-        contentPadding: context.paddingLow,
-        filled: true,
-        fillColor: const Color(0xFFACA0DF),
-        prefixIcon: const Icon(Icons.email, color: Colors.white),
-        hintText: "Kullanıcı Adı",
-        hintStyle: context.textTheme.headline6?.copyWith(
-          color: Colors.black,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: context.highBorderRadius,
+    return SizedBox(
+      width: 330.w,
+      child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        onChanged: (value) => _loginVM.onEmailChange(value),
+        controller: _emailController,
+        autofillHints: const [AutofillHints.email],
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+          filled: true,
+          fillColor: blackTextFild,
+          prefixIcon: const Icon(
+            Icons.mail,
+            color: Colors.white38,
+          ),
+          hintText: "E-Mail",
+          hintStyle: context.textTheme.titleLarge?.copyWith(
+            color: grayText,
+          ),
         ),
       ),
     );

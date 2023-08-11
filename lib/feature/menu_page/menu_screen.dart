@@ -4,7 +4,6 @@ import 'package:event_app/feature/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../core/colors/app_colors.dart';
 import '../../core/components/centered_progress.dart';
@@ -89,10 +88,15 @@ class MenuPage extends StatelessWidget {
                           if (MenuData.menuItems[index]["title"] ==
                               "Oturumu Kapat") {
                             FirebaseServices.auth.signOut().then((value) => {
-                                  PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      withNavBar: false,
-                                      screen: LoginScreen())
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                        return LoginScreen();
+                                      },
+                                    ),
+                                    (_) => false,
+                                  ),
                                 });
                           }
                           if (MenuData.menuItems[index]["title"] ==

@@ -10,7 +10,7 @@ class MapVM = _MapVMBase with _$MapVM;
 
 abstract class _MapVMBase with Store {
   @observable
-  final ObservableMap<String, Marker> markers = ObservableMap.of({});
+  ObservableMap<String, Marker> markers = ObservableMap.of({});
 
   @action
   getLocations(context, CustomInfoWindowController controller) async {

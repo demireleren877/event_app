@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_app/feature/chat_room/chat_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -100,11 +99,12 @@ class MessageBox extends StatelessWidget {
                               },
                               leading: CircleAvatar(
                                 radius: context.width * 0.07,
-                                backgroundImage: snapshot.data["profileImageUrl"] == ""
-                        ? const AssetImage("assets/image.png") as ImageProvider
-                        : CachedNetworkImageProvider(
-                            snapshot.data["profileImageUrl"]),
-                                
+                                backgroundImage:
+                                    snapshot.data["profileImageUrl"] == ""
+                                        ? const AssetImage("assets/image.png")
+                                            as ImageProvider
+                                        : CachedNetworkImageProvider(
+                                            snapshot.data["profileImageUrl"]),
                               ),
                               title: Padding(
                                 padding: context.verticalPaddingLow,
@@ -140,7 +140,7 @@ class MessageBox extends StatelessWidget {
                                       : const SizedBox(),
                                   ConstrainedBox(
                                     constraints: BoxConstraints(
-                                      maxWidth: context.width * 0.3,
+                                      maxWidth: context.width * 0.35,
                                     ),
                                     child: Text(
                                       data['lastMessage'],
@@ -149,19 +149,19 @@ class MessageBox extends StatelessWidget {
                                           .copyWith(color: Colors.white70),
                                     ),
                                   ),
-                                  context.emptySizedWidthBoxLow,
-                                  Text(
-                                    DateTime.now()
-                                                .difference(
-                                                    data['lastMessageTime']
-                                                        .toDate())
-                                                .inDays >
-                                            0
-                                        ? DateFormat('dd.MM.yyyy').format(
-                                            data['lastMessageTime'].toDate())
-                                        : DateFormat('HH:mm').format(
-                                            data['lastMessageTime'].toDate()),
-                                  ),
+                                  // context.emptySizedWidthBoxLow,
+                                  // Text(
+                                  //   DateTime.now()
+                                  //               .difference(
+                                  //                   data['lastMessageTime']
+                                  //                       .toDate())
+                                  //               .inDays >
+                                  //           0
+                                  //       ? DateFormat('dd.MM.yyyy').format(
+                                  //           data['lastMessageTime'].toDate())
+                                  //       : DateFormat('HH:mm').format(
+                                  //           data['lastMessageTime'].toDate()),
+                                  // ),
                                 ],
                               ),
                               trailing: SizedBox(

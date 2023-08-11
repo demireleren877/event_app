@@ -22,12 +22,8 @@ class LoginButton extends StatelessWidget {
           width: 175.w,
           child: TextButton(
             onPressed: () {
-              _loginVM.authentication(context, _formkey);
+              _loginVM.authentication(context);
             },
-            child: const Text(
-              "Giriş Yap",
-              style: TextStyle(fontSize: 20),
-            ),
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all<Color>(const Color(0xFFF951C1)),
@@ -36,6 +32,10 @@ class LoginButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+            ),
+            child: const Text(
+              "Giriş Yap",
+              style: TextStyle(fontSize: 20),
             ),
           ),
         ),

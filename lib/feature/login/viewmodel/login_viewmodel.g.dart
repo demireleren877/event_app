@@ -60,9 +60,8 @@ mixin _$LoginVM on _LoginVMBase, Store {
       AsyncAction('_LoginVMBase.authentication', context: context);
 
   @override
-  Future<dynamic> authentication(dynamic context, dynamic formKey) {
-    return _$authenticationAsyncAction
-        .run(() => super.authentication(context, formKey));
+  Future<dynamic> authentication(dynamic context) {
+    return _$authenticationAsyncAction.run(() => super.authentication(context));
   }
 
   late final _$_LoginVMBaseActionController =

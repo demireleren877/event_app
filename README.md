@@ -16,11 +16,8 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 # Bugs
-1- Satın alınan bilete buy butonu çıkmasın.
-2- Takip bildirimler yarım durumda.
 3- Local notif dahil edilicek.
 4- Grup chatte ardarda aynı kişiden gelen mesajda ilk mesajın titleı isim olmalı.
 5- Signup Username must be different.
-6- Mesaj kutusu overflow.
-7- Takvim view.
-8- Big bug null exception.
+9- New login signup pages.
+10- Message boxlar swipe ile sil olacak trash button will be remove.

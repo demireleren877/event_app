@@ -53,7 +53,7 @@ class CalendarScreen extends StatelessWidget {
                     locale: 'tr_TR',
                     isExpanded: true,
                     expandableDateFormat: 'EEEE, dd. MMMM yyyy',
-                    datePickerType: DatePickerType.date,
+                    datePickerType: DatePickerType.hidden,
                     dayOfWeekStyle: TextStyle(
                       color: Colors.purpleAccent.shade200,
                       fontWeight: FontWeight.w800,

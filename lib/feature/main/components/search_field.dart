@@ -2,6 +2,7 @@ import 'package:event_app/feature/map/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../viewmodel/main_viewmodel.dart';
 
@@ -45,11 +46,12 @@ class SearchField extends StatelessWidget {
         context.emptySizedWidthBoxLow3x,
         IconButton(
           onPressed: () {
-            Navigator.push(
+            PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
               context,
-              MaterialPageRoute(
-                builder: (_) => const MapScreen(),
-              ),
+              settings: const RouteSettings(name: "/followRequests"),
+              screen: const MapScreen(),
+              withNavBar: true,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
           },
           icon: const Icon(Icons.location_on_outlined),

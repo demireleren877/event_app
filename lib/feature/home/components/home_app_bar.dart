@@ -65,5 +65,3 @@ AppBar buildHomeAppBar(BuildContext context) {
     ],
   );
 }
-
-class FollowRequestsScreen {}

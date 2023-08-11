@@ -1,3 +1,4 @@
+import 'package:event_app/feature/sign_up/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -13,11 +14,12 @@ class CreateAccount extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, Routes.signUp);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => SignUpPage()));
         },
         child: Text(
           "Yeni Hesap Oluştur",
-          style: context.textTheme.bodyText1?.copyWith(
+          style: context.textTheme.bodyLarge?.copyWith(
             fontSize: context.dynamicWidth(0.04),
             decoration: TextDecoration.underline,
             decorationThickness: 1.5,
