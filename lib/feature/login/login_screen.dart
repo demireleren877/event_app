@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              context.emptySizedHeightBoxLow3x,
+              context.emptySizedHeightBoxLow,
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Column(
@@ -120,14 +120,6 @@ class LoginScreen extends StatelessWidget {
                       },
                       text: 'Sign in',
                       btnColor: blueButton,
-                    ),
-                    context.emptySizedHeightBoxLow,
-                    Mainbutton(
-                      onTap: () {},
-                      text: 'Sign in with google',
-                      image: 'google.png',
-                      btnColor: white,
-                      txtColor: blackBG,
                     ),
                     context.emptySizedHeightBoxLow,
                     TextButton(

@@ -21,8 +21,8 @@ class LoginButton extends StatelessWidget {
           height: 45.h,
           width: 175.w,
           child: TextButton(
-            onPressed: () {
-              _loginVM.authentication(context);
+            onPressed: () async {
+              await _loginVM.authentication(context);
             },
             style: ButtonStyle(
               backgroundColor:
