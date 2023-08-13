@@ -54,7 +54,7 @@ class MainScreen extends StatelessWidget {
                                   child: Text(
                                     "FEATURED",
                                     style:
-                                        context.textTheme.bodyText2?.copyWith(
+                                        context.textTheme.bodyMedium?.copyWith(
                                       color: Colors.white,
                                       fontSize: context.width * 0.04,
                                     ),
@@ -68,7 +68,7 @@ class MainScreen extends StatelessWidget {
                                   child: Text(
                                     "FOR YOU",
                                     style:
-                                        context.textTheme.bodyText2?.copyWith(
+                                        context.textTheme.bodyMedium?.copyWith(
                                       color: Colors.white,
                                       fontSize: context.width * 0.04,
                                     ),

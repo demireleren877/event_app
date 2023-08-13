@@ -138,14 +138,19 @@ class FollowRequestsPage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                  width: context.dynamicWidth(0.48),
+                                  width: context.dynamicWidth(0.5),
                                   child: Text.rich(
                                     TextSpan(
                                       children: [
                                         TextSpan(
                                           text: snapshot.data.toString(),
-                                          style: context.textTheme.titleLarge!
-                                              .copyWith(color: Colors.white),
+                                          style: context.textTheme.bodyMedium!
+                                              .copyWith(
+                                            color: Colors.white,
+                                            fontSize:
+                                                context.dynamicWidth(0.04),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ),
                                         TextSpan(
                                           text: " sizi takip etmeye başladı",
@@ -153,7 +158,8 @@ class FollowRequestsPage extends StatelessWidget {
                                               ?.copyWith(
                                             color: Colors.white70,
                                             fontSize:
-                                                context.dynamicWidth(0.05),
+                                                context.dynamicWidth(0.04),
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
                                       ],
@@ -170,17 +176,23 @@ class FollowRequestsPage extends StatelessWidget {
                                         final docs2 = snapshot2.data;
                                         return TextButton(
                                           onPressed: () {
-                                            docs["following"].contains(
-                                                    followerList[index]
-                                                        .toString())
+                                            docs2["followRequests"].contains(
+                                                    FirebaseServices.auth
+                                                        .currentUser!.email)
                                                 ? _firebaseServices
-                                                    .unfollowUser(
+                                                    .unSendFollowRequest(
                                                         followerList[index]
                                                             .toString())
-                                                : _firebaseServices
-                                                    .sendFollowRequest(
-                                                        followerList[index]
-                                                            .toString());
+                                                : docs2["followers"].contains(
+                                                        FirebaseServices.auth
+                                                            .currentUser!.email)
+                                                    ? _firebaseServices
+                                                        .unfollowUser(
+                                                            followerList[index]
+                                                                .toString())
+                                                    : _firebaseServices
+                                                        .sendFollowRequest(
+                                                            followerList[index].toString());
                                           },
                                           style: ButtonStyle(
                                             fixedSize:

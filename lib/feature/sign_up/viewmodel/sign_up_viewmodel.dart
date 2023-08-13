@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../core/colors/app_colors.dart';
+import '../../../core/routes/route_constants.dart';
 import '../../../core/services/firebase_services.dart';
 part 'sign_up_viewmodel.g.dart';
 
@@ -17,6 +18,9 @@ class SignUpVM = _SignUpVMBase with _$SignUpVM;
 
 abstract class _SignUpVMBase with Store {
   final CacheManager _cacheManager = CacheManager();
+
+  @observable
+  bool isUserExist = false;
 
   @observable
   PageController pageController = PageController();
@@ -61,29 +65,44 @@ abstract class _SignUpVMBase with Store {
 
   @action
   Future createAccount(context) async {
-    try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (error) {
-      Fluttertoast.showToast(
-          msg: error.message ?? "Hatalı Giriş Denemesi",
-          gravity: ToastGravity.CENTER,
-          textColor: AppColors.red);
+    if (name != "" && userName != "" && email != "" && password != "") {
+      FirebaseServices.user
+          .where("userName", isEqualTo: userName)
+          .get()
+          .then((value) async {
+        if (value.docs.isEmpty) {
+          try {
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: email, password: password);
+            addUsertoHive();
+            await FirebaseServices.user.doc(email).set({
+              "name": name,
+              "userName": userName,
+              "phoneNumber": "",
+              "takenTickets": [],
+              "followRequests": [],
+              "followers": [],
+              "following": [],
+              "birthDate": DateTime.now(),
+              "profileImageUrl": imageUrl,
+              "email": email,
+              "status": "unavailable",
+            }).then(
+              (value) => Navigator.pushNamed(context, Routes.home),
+            );
+          } on FirebaseAuthException catch (error) {
+            Fluttertoast.showToast(
+                msg: error.message ?? "Hatalı Giriş Denemesi",
+                gravity: ToastGravity.CENTER,
+                textColor: AppColors.red);
+          }
+        } else {
+          Fluttertoast.showToast(msg: "Bu Kullanıcı Adı Alınamaz.");
+        }
+      });
+    } else {
+      Fluttertoast.showToast(msg: "Boş Alan Bırakmayınız.");
     }
-    await FirebaseServices.user.doc(email).set({
-      "name": name,
-      "userName": userName,
-      "phoneNumber": "",
-      "takenTickets": [],
-      "followRequests": [],
-      "followers": [],
-      "following": [],
-      "birthDate": DateTime.now(),
-      "profileImageUrl": imageUrl,
-      "email": email,
-      "status": "unavailable",
-    });
-    addUsertoHive();
   }
 
   @action

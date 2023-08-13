@@ -33,7 +33,7 @@ class _MapScreenState extends State<MapScreen> {
     return Observer(builder: (_) {
       return Scaffold(
         body: SizedBox(
-          height: context.height * 0.94,
+          height: context.height * 0.93,
           child: Stack(
             children: [
               GoogleMap(
@@ -59,7 +59,7 @@ class _MapScreenState extends State<MapScreen> {
                 height: 200.h,
                 width: 300.w,
                 offset: 35.w,
-              )
+              ),
             ],
           ),
         ),

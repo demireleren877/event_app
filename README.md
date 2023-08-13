@@ -18,6 +18,8 @@ samples, guidance on mobile development, and a full API reference.
 # Bugs
 3- Local notif dahil edilicek.
 4- Grup chatte ardarda aynı kişiden gelen mesajda ilk mesajın titleı isim olmalı.
-5- Signup Username must be different.
-9- New login signup pages.
 10- Message boxlar swipe ile sil olacak trash button will be remove.
+18- Haritada o günkü eventleri görebilmeli.
+19- Haritada places vs events ayrımı.
+20- Current location marklanmalı ve google maps giderken kullanılmalı.
+25- Chat roomda image son mesaj featureu eklenmeli.

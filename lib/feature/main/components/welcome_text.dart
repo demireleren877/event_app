@@ -1,3 +1,4 @@
+import 'package:event_app/core/components/centered_progress.dart';
 import 'package:event_app/core/services/firebase_services.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -5,24 +6,29 @@ import 'package:kartal/kartal.dart';
 import '../../../core/cache/cache_manager.dart';
 
 class WelcomeText extends StatelessWidget {
-  WelcomeText({
+  const WelcomeText({
     Key? key,
     required CacheManager cacheManager,
   }) : super(key: key);
-  final FirebaseServices _firebaseServices = FirebaseServices();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _firebaseServices.getCurrentUsername(),
+    return StreamBuilder(
+      stream: FirebaseServices.user
+          .doc(FirebaseServices.auth.currentUser!.email.toString())
+          .snapshots(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return Padding(
-          padding: context.horizontalPaddingNormal,
-          child: Text(
-            "Merhaba ${snapshot.data}",
-            style: context.textTheme.headline4,
-          ),
-        );
+        if (snapshot.hasData) {
+          var doc = snapshot.data;
+          return Padding(
+            padding: context.horizontalPaddingNormal,
+            child: Text(
+              "Merhaba ${doc["name"]}",
+              style: context.textTheme.headlineMedium,
+            ),
+          );
+        }
+        return const CenteredProgressIndicator();
       },
     );
   }

@@ -26,18 +26,17 @@ class ProfileImage extends StatelessWidget {
                 ? FileImage(_signUpViewmodel.imageFile!)
                 : const AssetImage("assets/image.png") as ImageProvider,
           ),
-          Visibility(
-            visible: _signUpViewmodel.imageFile != null,
-            child: Positioned(
-              bottom: 0,
-              right: 0,
-              child: IconButton(
-                onPressed: () => _signUpViewmodel.setProfileImage(),
-                icon: Icon(
-                  Icons.change_circle,
-                  color: AppColors.white,
-                  size: 30.sp,
-                ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: IconButton(
+              onPressed: () => _signUpViewmodel.setProfileImage(),
+              icon: Icon(
+                _signUpViewmodel.imageFile != null
+                    ? Icons.change_circle
+                    : Icons.add_circle,
+                color: AppColors.white,
+                size: 30.sp,
               ),
             ),
           )
